@@ -73,7 +73,7 @@ model Question {
   gameId                  String
   options                 Json? // for mcq type questions
   percentageCorrect       Float? // for open-ended questions
-  isCorrect                Boolean // for mcq type questions
+  isCorrect                Boolean? // for mcq type questions
   questionType            GameType
   userAnswer              String?
   game                   Game       @relation(fields: [gameId], references: [id], onDelete: Cascade)

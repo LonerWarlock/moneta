@@ -25,6 +25,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { CopyCheck } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 // type Props = {};
 
@@ -35,6 +38,19 @@ const QuizCreation = (
     /*props: Props*/
   }
 ) => {
+  const router = useRouter();
+
+  const {mutate : getQuestions, isLoading} = useMutation({
+    mutationFn: async ({topic, type, amount} : Input) => {
+      const response = await axios.post("/api/game", {
+        topic,
+        type,
+        amount,
+      });
+      return response.data;
+    },
+  });
+
   const form = useForm<Input>({
     resolver: zodResolver(quizCreationSchema),
     defaultValues: {
@@ -44,8 +60,20 @@ const QuizCreation = (
     },
   });
 
+  // create endpoint for game
   function onSubmit(input: Input) {
-    alert(JSON.stringify(input, null, 2));
+    getQuestions({
+      topic: input.topic,
+      type: input.type,
+      amount: input.amount,
+    }, {
+      onSuccess: ({gameId}) => {
+        if(form.getValues("type") === "mcq"){
+          router.push(`/play/mcq/${gameId}`);
+        }
+        else router.push(`/play/open_ended/${gameId}`);
+      },
+    })
   }
 
   return (
@@ -121,7 +149,7 @@ const QuizCreation = (
                   <CopyCheck className="w-4 h-4 mr-2" /> Open Ended
                 </Button>
               </div>
-              <Button type="submit">Submit</Button>
+              <Button disabled={isLoading} type="submit">Submit</Button>
             </form>
           </Form>
         </CardContent>
