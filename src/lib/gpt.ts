@@ -51,6 +51,20 @@ export async function strict_output(
       output_format_prompt += `\nGenerate an array of json, one json for each input element.`;
     }
 
+    if (JSON.stringify(output_format).includes("answer")) {
+      system_prompt += `
+
+IMPORTANT: For open-ended questions:
+- The 'answer' field must be a complete, grammatically correct sentence carrying the actual answer word as the first key word.
+- The actual answer must be the first keyword. Any other keywords in the sentece can not come before the actual answer.
+- It must contain the correct keyword naturally within the sentence.
+- Do NOT respond with just a word or phrase.
+- Format it so it can be turned into a fill-in-the-blank question later.
+Example: 
+Q. Which city is known as the pink city ?
+Instead of "Jaipur", write "aipur is famously known as the Pink City due to its distinctive building color."`;
+    }
+
     const response = await openai.chat.completions.create({
       temperature: temperature,
       model: model,
@@ -66,15 +80,17 @@ export async function strict_output(
     const rawRes = response.choices[0].message.content ?? "";
 
     // Try to extract the first valid JSON array or object from the response
-    const match = rawRes.match(/(\[\s*\{[\s\S]*\}\s*\])|(\{\s*".*?":[\s\S]*\})/);
+    const match = rawRes.match(
+      /(\[\s*\{[\s\S]*\}\s*\])|(\{\s*".*?":[\s\S]*\})/
+    );
     let res = match ? match[0] : rawRes;
 
     // Replace invalid JSON artifacts
     res = res
-  .replace(/“|”/g, '"')               // smart quotes → straight quotes
-  .replace(/(\w)"s\b/g, "$1's")       // fix broken `"s` words
-  .replace(/(\w)"(\w)/g, "$1'$2")     // fix misquoted contractions like it"s
-                  // single → double quotes
+      .replace(/“|”/g, '"') // smart quotes → straight quotes
+      .replace(/(\w)"s\b/g, "$1's") // fix broken `"s` words
+      .replace(/(\w)"(\w)/g, "$1'$2"); // fix misquoted contractions like it"s
+    // single → double quotes
 
     if (verbose) {
       console.log(

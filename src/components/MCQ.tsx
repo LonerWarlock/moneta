@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { differenceInSeconds } from "date-fns";
 import { Game, Question } from "@prisma/client";
 import { Timer } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription } from "./ui/card";
@@ -14,7 +15,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { BarChart } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn, formatTimeDelta } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 
 
@@ -27,7 +28,17 @@ const MCQ = ({ game }: Props) => {
   const [selectedChoice, setSelectedChoice] = React.useState<number>(0);
   const [correct_Answers, setCorrectAnswers] = React.useState(0);
   const [wrong_Answers, setWrongAnswers] = React.useState(0);
+  const [now, setNow] = React.useState(new Date());
   const [hasEnded, setHasEnded] = React.useState(false);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      if(!hasEnded){
+        setNow(new Date());
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [hasEnded])
 
   const currentQuestion = React.useMemo(() => {
     return game.questions[questionIndex];
@@ -104,8 +115,8 @@ const MCQ = ({ game }: Props) => {
     return (
       <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
         <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
-          You Completed in{" 3 min 45 sec "}
-
+          You Completed in{" "}
+          {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
         </div>
         <Link
           href={`/statistics/${game.id}`}
@@ -131,7 +142,7 @@ const MCQ = ({ game }: Props) => {
           </p>
           <div className="flex items-center text-slate-400 py-2">
             <Timer className="mr-2" />
-            <span>00:00</span>
+            {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
           </div>
         </div>
 
