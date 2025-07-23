@@ -2,11 +2,12 @@
 
 import React from "react";
 import { Game, Question } from "@prisma/client";
-import { ChevronRight, Timer } from "lucide-react";
-import { formatTimeDelta } from "@/lib/utils";
+import { BarChart, ChevronRight, Timer } from "lucide-react";
+import { cn, formatTimeDelta } from "@/lib/utils";
+import Link from "next/link";
 import { differenceInSeconds } from "date-fns";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import z from "zod";
@@ -20,37 +21,49 @@ type Props = {
 
 const OpenEnded = ({ game }: Props) => {
   const [questionIndex, setQuestionIndex] = React.useState(0);
-  const [selectedChoice, setSelectedChoice] = React.useState<number>(0);
   const [now, setNow] = React.useState(new Date());
+  const [keywords, setKeywords] = React.useState<string[]>([]);
+  const [blankAnswer, setBlankAnswer] = React.useState<string>("");
   const [hasEnded, setHasEnded] = React.useState(false);
 
   React.useEffect(() => {
-      const interval = setInterval(() => {
-        if(!hasEnded){
-          setNow(new Date());
-        }
-      }, 1000);
-      return () => clearInterval(interval);
-    }, [hasEnded])
+    const interval = setInterval(() => {
+      if (!hasEnded) {
+        setNow(new Date());
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [hasEnded]);
 
   const currentQuestion = React.useMemo(() => {
     return game.questions[questionIndex];
   }, [questionIndex, game.questions]);
 
+  // 1. Change mutationFn to accept the payload as a variable
   const { mutate: checkAnswer, isLoading: isChecking } = useMutation({
-    mutationFn: async () => {
-      const payload: z.infer<typeof checkAnswerSchema> = {
-        questionId: currentQuestion.id,
-        userAnswer: "",
-      };
+    mutationFn: async (payload: z.infer<typeof checkAnswerSchema>) => {
       const response = await axios.post("/api/checkAnswer", payload);
       return response.data;
     },
   });
 
+  // 2. Update handleNext to create the payload and pass it to checkAnswer
   const handleNext = React.useCallback(() => {
     if (isChecking) return;
-    checkAnswer(undefined, {
+
+    // Move the input gathering and payload creation here
+    const userInput =
+      (document.querySelector("#user-blank-input") as HTMLInputElement)
+        ?.value || "";
+
+    const payload = {
+      questionId: currentQuestion.id,
+      userAnswer: userInput,
+      keyword: keywords[0],
+    };
+
+    // Pass the payload directly when calling the mutation
+    checkAnswer(payload, {
       onSuccess: ({ percentSimilar }) => {
         toast.success(
           <div>
@@ -68,19 +81,44 @@ const OpenEnded = ({ game }: Props) => {
         setQuestionIndex((prev) => prev + 1);
       },
     });
-  }, [checkAnswer, isChecking, questionIndex, game.questions.length]);
+  }, [
+    checkAnswer,
+    isChecking,
+    questionIndex,
+    game.questions.length,
+    currentQuestion, // Add currentQuestion as a dependency
+    keywords, // Add keywords as a dependency
+  ]);
 
-    React.useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Enter") {
-            handleNext();
-        }
-        };
-        document.addEventListener("keydown", handleKeyDown);
-        return () => {
-        document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [handleNext]);
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        handleNext();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleNext]);
+
+  if (hasEnded) {
+    return (
+      <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+        <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
+          You Completed in{" "}
+          {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
+        </div>
+        <Link
+          href={`/statistics/${game.id}`}
+          className={cn(buttonVariants({ size: "lg" }), "mt-2")}
+        >
+          View Statistics
+          <BarChart className="w-4 h-4 ml-2" />
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="absolute -translate-x-1/2 -translate-y-1/2 md:w-[80vw] max-w-4xl w-[80vw] h-[75vh] top-1/2 left-1/2">
@@ -117,7 +155,12 @@ const OpenEnded = ({ game }: Props) => {
       </Card>
 
       <div className="flex flex-col items-center justify-center w-full mt-4">
-        <BlankAnswerInput answer={currentQuestion.answer}/>
+        <BlankAnswerInput
+          key={currentQuestion.id} // <-- ADD THIS LINE TO GENRATE EMPTY INPUTS FOR EACH QUESTION
+          answer={currentQuestion.answer}
+          setBlankAnswer={setBlankAnswer}
+          setKeywords={setKeywords}
+        />
         <Button className="mt-2" onClick={handleNext} disabled={isChecking}>
           Next <ChevronRight className="w-4 h-4 ml-2" />
         </Button>

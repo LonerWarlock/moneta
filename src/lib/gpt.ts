@@ -54,7 +54,7 @@ export async function strict_output(
     if (JSON.stringify(output_format).includes("answer")) {
       system_prompt += `
 
-IMPORTANT: For open-ended questions:
+IMPORTANT: For type == open-ended only (not for MCQs) questions:
 - The 'answer' field must be a complete, grammatically correct sentence carrying the actual answer word as the first key word.
 - The actual answer must be the first keyword. Any other keywords in the sentece can not come before the actual answer.
 - It must contain the correct keyword naturally within the sentence.

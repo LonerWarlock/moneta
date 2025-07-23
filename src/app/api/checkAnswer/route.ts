@@ -4,10 +4,10 @@ import { ZodError } from "zod";
 import { checkAnswerSchema } from "@/schemas/form/quiz";
 import { compareTwoStrings } from "string-similarity";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { questionId, userAnswer } = checkAnswerSchema.parse(body);
+    const { questionId, userAnswer, keyword } = checkAnswerSchema.parse(body);
     const question = await prisma.question.findUnique({
       where: { id: questionId },
     });
@@ -17,10 +17,6 @@ export async function POST(req: Request, res: Response) {
         { status: 404 }
       );
     }
-    await prisma.question.update({
-      where: { id: questionId },
-      data: { userAnswer: userAnswer },
-    });
 
     if (question.questionType === "mcq") {
       const isCorrect =
@@ -28,18 +24,36 @@ export async function POST(req: Request, res: Response) {
         userAnswer.toLowerCase().trim();
       await prisma.question.update({
         where: { id: questionId },
-        data: { isCorrect },
+        data: { userAnswer, isCorrect },
       });
       return NextResponse.json({ isCorrect }, { status: 200 });
-    }else if (question.questionType === "open_ended") {
-      let percentSimilar = compareTwoStrings(question.answer.toLowerCase().trim(), userAnswer.toLowerCase().trim());
+    } else if (question.questionType === "open_ended") {
+      if (typeof keyword !== "string") {
+        return NextResponse.json(
+          { message: "Keyword not provided for comparison." },
+          { status: 400 }
+        );
+      }
+      
+      let percentSimilar = compareTwoStrings(
+        keyword.toLowerCase().trim(),
+        userAnswer.toLowerCase().trim()
+      );
       percentSimilar = Math.round(percentSimilar * 100);
       await prisma.question.update({
         where: { id: questionId },
-        data: { percentageCorrect: percentSimilar },
+        data: {
+          userAnswer: userAnswer,
+          percentageCorrect: percentSimilar,
+        },
       });
       return NextResponse.json({ percentSimilar }, { status: 200 });
     }
+    // 1. ADD THIS: Handle any other unexpected question types
+    return NextResponse.json(
+      { message: "Invalid question type" },
+      { status: 400 }
+    );
   } catch (error) {
     if (error instanceof ZodError) {
       return NextResponse.json(
@@ -51,5 +65,11 @@ export async function POST(req: Request, res: Response) {
         }
       );
     }
+    // 2. ADD THIS: Catch any other server-side errors
+    console.error("API Error:", error); // Good for debugging
+    return NextResponse.json(
+      { message: "An unexpected error occurred." },
+      { status: 500 }
+    );
   }
 }

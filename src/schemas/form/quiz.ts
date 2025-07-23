@@ -15,4 +15,5 @@ export const quizCreationSchema = z.object({
 export const checkAnswerSchema = z.object({
   questionId: z.string(),
   userAnswer: z.string(),
+  keyword: z.string().optional(),
 });
