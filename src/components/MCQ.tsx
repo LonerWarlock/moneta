@@ -55,6 +55,13 @@ const MCQ = ({ game }: Props) => {
     },
   });
 
+  const { mutate: endGame } = useMutation({
+  mutationFn: async () => {
+    await axios.post("/api/game/end", { gameId: game.id });
+  },
+});
+
+
   const handleNext = React.useCallback(() => {
     if (isChecking) return;
     checkAnswer(undefined, {
@@ -78,12 +85,13 @@ const MCQ = ({ game }: Props) => {
         }
         if (questionIndex === game.questions.length - 1) {
           setHasEnded(true);
+          endGame();
           return;
         }
         setQuestionIndex((prev) => prev + 1);
       },
     });
-  }, [checkAnswer, isChecking, questionIndex, game.questions.length]);
+  }, [checkAnswer, isChecking, questionIndex, game.questions.length, endGame]);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -113,19 +121,18 @@ const MCQ = ({ game }: Props) => {
 
   if (hasEnded) {
     return (
-      <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-        <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
-          You Completed in{" "}
-          {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
-        </div>
-        <Link
-          href={`/statistics/${game.id}`}
-          className={cn(buttonVariants({ size: "lg" }), "mt-2")}
-        >
-          View Statistics
-          <BarChart className="w-4 h-4 ml-2" />
-        </Link>
-      </div>
+        <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+          <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
+            Click the Link Below to view your Quiz Report
+          </div>
+          <Link
+            href={`/statistics/${game.id}`}
+            className={cn(buttonVariants({ size: "lg" }), "mt-2")}
+          >
+            View Report
+            <BarChart className="w-4 h-4 ml-2" />
+          </Link>
+        </div>  
     );
   }
 

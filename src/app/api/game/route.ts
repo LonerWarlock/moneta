@@ -26,6 +26,21 @@ export async function POST(req: Request) {
       },
     });
 
+    await prisma.topicCount.upsert({
+      where: {
+        topic,
+      },
+      create: {
+        topic,
+        count: 1,
+      },
+      update: {
+        count: {
+          increment: 1,
+        },
+      }
+    })
+
     const {data} = await axios.post(`${process.env.API_URL}/api/questions`, {
       amount,
       topic,
@@ -81,6 +96,7 @@ export async function POST(req: Request) {
     if (error instanceof ZodError) {
       return NextResponse.json({ error: error.issues }, { status: 400 });
     }
+    console.error("Unexpected error in /api/game:", error);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
   }
 }

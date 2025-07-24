@@ -23,7 +23,7 @@ const OpenEnded = ({ game }: Props) => {
   const [questionIndex, setQuestionIndex] = React.useState(0);
   const [now, setNow] = React.useState(new Date());
   const [keywords, setKeywords] = React.useState<string[]>([]);
-  const [blankAnswer, setBlankAnswer] = React.useState<string>("");
+  const [, setBlankAnswer] = React.useState<string>("");
   const [hasEnded, setHasEnded] = React.useState(false);
 
   React.useEffect(() => {
@@ -46,6 +46,12 @@ const OpenEnded = ({ game }: Props) => {
       return response.data;
     },
   });
+
+  const { mutate: endGame } = useMutation({
+  mutationFn: async () => {
+    await axios.post("/api/game/end", { gameId: game.id });
+  },
+});
 
   // 2. Update handleNext to create the payload and pass it to checkAnswer
   const handleNext = React.useCallback(() => {
@@ -76,6 +82,7 @@ const OpenEnded = ({ game }: Props) => {
 
         if (questionIndex === game.questions.length - 1) {
           setHasEnded(true);
+          endGame();
           return;
         }
         setQuestionIndex((prev) => prev + 1);
@@ -88,6 +95,7 @@ const OpenEnded = ({ game }: Props) => {
     game.questions.length,
     currentQuestion, // Add currentQuestion as a dependency
     keywords, // Add keywords as a dependency
+    endGame,
   ]);
 
   React.useEffect(() => {
@@ -106,8 +114,7 @@ const OpenEnded = ({ game }: Props) => {
     return (
       <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
         <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
-          You Completed in{" "}
-          {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
+          Click the Link Below to view your Quiz Report
         </div>
         <Link
           href={`/statistics/${game.id}`}

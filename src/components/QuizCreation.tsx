@@ -28,17 +28,18 @@ import { Separator } from "@/components/ui/separator";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import LoadingQues from "./LoadingQues";
 
-// type Props = {};
+type Props = {
+  topicParams: string;
+};
 
 type Input = z.infer<typeof quizCreationSchema>;
 
-const QuizCreation = (
-  {
-    /*props: Props*/
-  }
-) => {
+const QuizCreation = ({topicParams}: Props) => {
   const router = useRouter();
+  const [showLoader, setShowLoader] = React.useState(false);
+  const [finished, setFinished] = React.useState(false);
 
   const {mutate : getQuestions, isLoading} = useMutation({
     mutationFn: async ({topic, type, amount} : Input) => {
@@ -54,7 +55,7 @@ const QuizCreation = (
   const form = useForm<Input>({
     resolver: zodResolver(quizCreationSchema),
     defaultValues: {
-      topic: "",
+      topic: topicParams,
       type: "mcq",
       amount: 3,
     },
@@ -62,18 +63,31 @@ const QuizCreation = (
 
   // create endpoint for game
   function onSubmit(input: Input) {
+    setShowLoader(true);
     getQuestions({
       topic: input.topic,
       type: input.type,
       amount: input.amount,
     }, {
       onSuccess: ({gameId}) => {
-        if(form.getValues("type") === "mcq"){
+        setFinished(true);
+        setTimeout(() => {
+          if(form.getValues("type") === "mcq"){
           router.push(`/play/mcq/${gameId}`);
         }
         else router.push(`/play/open_ended/${gameId}`);
+        }, 1000)
       },
+      onError: () => {
+        setShowLoader(false);
+      }
     })
+  }
+
+  form.watch();
+
+  if(showLoader){
+    return <LoadingQues finished={finished}/>;
   }
 
   return (

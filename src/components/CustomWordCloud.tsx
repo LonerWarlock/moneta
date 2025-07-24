@@ -1,39 +1,40 @@
 "use client";
-import D3WordCloud from "react-d3-cloud";
+
 import { useTheme } from "next-themes";
 import React from "react";
+import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 
-// type Props = {};
+// Dynamically import the D3WordCloud component with SSR turned off
+const D3WordCloud = dynamic(() => import("react-d3-cloud"), {
+  ssr: false,
+});
 
-const data = [
-  { text: "AI", value: 1 },
-  { text: "Machine Learning", value: 10 },
-  { text: "Data Science", value: 100 },
-  { text: "Blockchain", value: 1000 },
-  { text: "Cybersecurity", value: 5 },
-  { text: "Cloud Computing", value: 50 },
-  { text: "DevOps", value: 500 },
-  { text: "Web Development", value: 5000 },
-];
+type Props = {
+  formattedTopics: { text: string; value: number }[];
+};
 
 const fontSizeMapper = (word: { value: number }) =>
   Math.log2(word.value) * 5 + 16;
 
-const WordCloud = ({/*props: Props*/}) => {
+const WordCloud = ({ formattedTopics }: Props) => {
   const { theme } = useTheme();
-
+  const router = useRouter();
   return (
-    <>
-      <D3WordCloud
-        data={data}
-        font="Times New Roman"
-        fontSize={fontSizeMapper}
-        padding={10}
-        rotate={0}
-        fill={theme === "dark" ? "#fff" : "#000"}
-        height={550}
-      />
-    </>
+    <div className="word-cloud-container">
+    <D3WordCloud
+      data={formattedTopics}
+      font="Times New Roman"
+      fontSize={fontSizeMapper}
+      padding={10}
+      onWordClick={(event, word) => {
+        router.push(`/quiz?topic=${encodeURIComponent(word.text)}`);
+      }}
+      rotate={0}
+      fill={theme === "dark" ? "#fff" : "#000"}
+      height={550}
+    />
+    </div>
   );
 };
 
