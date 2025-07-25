@@ -18,22 +18,25 @@ const fontSizeMapper = (word: { value: number }) =>
   Math.log2(word.value) * 5 + 16;
 
 const WordCloud = ({ formattedTopics }: Props) => {
-  const { theme } = useTheme();
+  // Destructure resolvedTheme from the hook
+  const { resolvedTheme } = useTheme();
   const router = useRouter();
+  
   return (
     <div className="word-cloud-container">
-    <D3WordCloud
-      data={formattedTopics}
-      font="Times New Roman"
-      fontSize={fontSizeMapper}
-      padding={10}
-      onWordClick={(event, word) => {
-        router.push(`/quiz?topic=${encodeURIComponent(word.text)}`);
-      }}
-      rotate={0}
-      fill={theme === "light" ? "#000" : "#fff"}
-      height={550}
-    />
+      <D3WordCloud
+        data={formattedTopics}
+        font="Times New Roman"
+        fontSize={fontSizeMapper}
+        padding={10}
+        onWordClick={(event, word) => {
+          router.push(`/quiz?topic=${encodeURIComponent(word.text)}`);
+        }}
+        rotate={0}
+        // Use resolvedTheme to determine the fill color
+        fill={resolvedTheme === "light" ? "#000" : "#fff"}
+        height={550}
+      />
     </div>
   );
 };
