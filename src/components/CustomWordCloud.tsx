@@ -31,7 +31,7 @@ const WordCloud = ({ formattedTopics }: Props) => {
         router.push(`/quiz?topic=${encodeURIComponent(word.text)}`);
       }}
       rotate={0}
-      fill={theme === "dark" ? "#fff" : "#000"}
+      fill={theme === "light" ? "#000" : "#fff"}
       height={550}
     />
     </div>
