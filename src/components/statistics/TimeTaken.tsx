@@ -6,10 +6,16 @@ import { differenceInSeconds } from 'date-fns';
 
 type Props = {
     timeEnded: Date;
-    timeStarted: Date;
+    timeStarted: Date | null;
 };
 
 const TimeTaken = ({timeEnded, timeStarted}: Props) => {
+
+    const timeDifference =
+    timeStarted && timeEnded
+      ? formatTimeDelta(differenceInSeconds(timeEnded, timeStarted))
+      : "0s";
+
   return (
     <Card className="md:col-span-4">
         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -20,7 +26,7 @@ const TimeTaken = ({timeEnded, timeStarted}: Props) => {
         </CardHeader>
         <CardContent>
             <div className="text-xl font-medium">
-                {formatTimeDelta(differenceInSeconds(timeEnded, timeStarted))}
+                {timeDifference}
             </div>
         </CardContent>
     </Card>

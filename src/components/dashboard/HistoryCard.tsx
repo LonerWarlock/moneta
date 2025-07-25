@@ -15,7 +15,7 @@ const HistoryCard = ({/*props: Props*/}) => {
       onClick={() => router.push("/history")}
     >
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-        <CardTitle className="text-2xl font-bold">My Quiz Journey</CardTitle>
+        <CardTitle className="text-2xl font-bold">Your Quiz Journey</CardTitle>
         <History size={24} strokeWidth={2.5} />
       </CardHeader>
       <CardContent>

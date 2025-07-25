@@ -10,7 +10,8 @@ type Props = {
   };
 };
 
-const OpenEndedPage = async ({ params: { gameId } }: Props) => {
+const OpenEndedPage = async ({ params}: Props) => {
+  const { gameId } = params;
   const session = await getAuthSession();
   if (!session?.user) {
     return redirect("/");

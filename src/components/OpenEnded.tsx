@@ -20,6 +20,7 @@ type Props = {
 };
 
 const OpenEnded = ({ game }: Props) => {
+  const [currentGame, setCurrentGame] = React.useState(game);
   const [questionIndex, setQuestionIndex] = React.useState(0);
   const [now, setNow] = React.useState(new Date());
   const [keywords, setKeywords] = React.useState<string[]>([]);
@@ -36,10 +37,35 @@ const OpenEnded = ({ game }: Props) => {
   }, [hasEnded]);
 
   const currentQuestion = React.useMemo(() => {
-    return game.questions[questionIndex];
-  }, [questionIndex, game.questions]);
+    return currentGame.questions[questionIndex];
+  }, [questionIndex, currentGame.questions]);
 
-  // 1. Change mutationFn to accept the payload as a variable
+  // --- Start of Timer Fix Logic ---
+  const { mutate: startGame } = useMutation({
+    mutationFn: async () => {
+      const response = await axios.post("/api/game/start", { gameId: currentGame.id });
+      return response.data as Game;
+    },
+    onSuccess: (updatedGame) => {
+      setCurrentGame((prev) => ({ ...prev, timeStarted: updatedGame.timeStarted }));
+    },
+  });
+
+  type EndGameVars = {
+    gameId: string;
+  };
+
+  const { mutate: endGame } = useMutation({
+    mutationFn: async ({ gameId }: EndGameVars) => {
+      await axios.post("/api/game/end", { gameId: gameId });
+    },
+  });
+
+  React.useEffect(() => {
+    startGame();
+  }, [startGame]);
+  // --- End of Timer Fix Logic ---
+
   const { mutate: checkAnswer, isLoading: isChecking } = useMutation({
     mutationFn: async (payload: z.infer<typeof checkAnswerSchema>) => {
       const response = await axios.post("/api/checkAnswer", payload);
@@ -47,28 +73,15 @@ const OpenEnded = ({ game }: Props) => {
     },
   });
 
-  const { mutate: endGame } = useMutation({
-  mutationFn: async () => {
-    await axios.post("/api/game/end", { gameId: game.id });
-  },
-});
-
-  // 2. Update handleNext to create the payload and pass it to checkAnswer
   const handleNext = React.useCallback(() => {
     if (isChecking) return;
-
-    // Move the input gathering and payload creation here
-    const userInput =
-      (document.querySelector("#user-blank-input") as HTMLInputElement)
-        ?.value || "";
-
+    const userInput = (document.querySelector("#user-blank-input") as HTMLInputElement)?.value || "";
     const payload = {
       questionId: currentQuestion.id,
       userAnswer: userInput,
       keyword: keywords[0],
     };
 
-    // Pass the payload directly when calling the mutation
     checkAnswer(payload, {
       onSuccess: ({ percentSimilar }) => {
         toast.success(
@@ -80,9 +93,9 @@ const OpenEnded = ({ game }: Props) => {
           </div>
         );
 
-        if (questionIndex === game.questions.length - 1) {
+        if (questionIndex === currentGame.questions.length - 1) {
           setHasEnded(true);
-          endGame();
+          endGame({ gameId: currentGame.id });
           return;
         }
         setQuestionIndex((prev) => prev + 1);
@@ -92,9 +105,10 @@ const OpenEnded = ({ game }: Props) => {
     checkAnswer,
     isChecking,
     questionIndex,
-    game.questions.length,
-    currentQuestion, // Add currentQuestion as a dependency
-    keywords, // Add keywords as a dependency
+    currentGame.questions.length,
+    currentGame.id,
+    currentQuestion,
+    keywords,
     endGame,
   ]);
 
@@ -112,65 +126,75 @@ const OpenEnded = ({ game }: Props) => {
 
   if (hasEnded) {
     return (
-      <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-        <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
-          Click the Link Below to view your Quiz Report
+      <div className="absolute inset-x-0 top-20 bottom-0">
+        <div className="flex flex-col items-center justify-center h-full pb-10 p-4 text-center">
+          <p className="mt-4 text-muted-foreground">
+            You have completed the quiz!
+      <br />
+      Click the button below to view your report.
+          </p>
+          <Link
+            href={`/statistics/${currentGame.id}`}
+            className={cn(buttonVariants({ size: "lg" }), "mt-6")}
+          >
+            View Report
+            <BarChart className="w-4 h-4 ml-2" />
+          </Link>
         </div>
-        <Link
-          href={`/statistics/${game.id}`}
-          className={cn(buttonVariants({ size: "lg" }), "mt-2")}
-        >
-          View Statistics
-          <BarChart className="w-4 h-4 ml-2" />
-        </Link>
       </div>
     );
   }
 
   return (
-    <div className="absolute -translate-x-1/2 -translate-y-1/2 md:w-[80vw] max-w-4xl w-[80vw] h-[75vh] top-1/2 left-1/2">
-      <div className="flex items-center justify-between w-full">
-        {/* Left group: Topic + Timer */}
-        <div className="flex flex-col scale-90">
-          <p className="flex items-center">
-            <span className="mr-2 text-slate-400">Topic</span>
-            <span className="px-2 py-1 text-white rounded-lg bg-slate-800">
-              {game.topic}
-            </span>
-          </p>
-          <div className="flex items-center text-slate-400 py-2">
-            <Timer className="mr-2" />
-            {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
+    <div className="absolute top-20 left-0 right-0 bottom-0">
+      <div className="flex flex-col h-full max-w-4xl mx-auto px-4 sm:px-8 pb-8">
+        {/* Top Bar */}
+        <div className="flex items-center justify-between w-full flex-shrink-0">
+          <div className="flex flex-col">
+            <p className="flex items-center">
+              <span className="mr-2 text-slate-500 dark:text-slate-400">Topic</span>
+              <span className="px-2 py-1 text-white rounded-lg bg-slate-800 dark:bg-slate-700">
+                {currentGame.topic}
+              </span>
+            </p>
+            <div className="flex items-center mt-2 text-slate-500 dark:text-slate-400">
+              <Timer className="mr-2" />
+              {currentGame.timeStarted ? formatTimeDelta(differenceInSeconds(now, currentGame.timeStarted)) : "00:00"}
+            </div>
           </div>
         </div>
 
-        {/* Right: Counter */}
-      </div>
+        {/* Question Card */}
+        <Card className="w-full mt-4 flex-shrink-0">
+          <CardHeader className="flex flex-row items-center">
+            <CardTitle className="mr-5 text-center divide-y divide-zinc-600/50">
+              <div>{questionIndex + 1}</div>
+              <div className="text-base text-slate-400">
+                {currentGame.questions.length}
+              </div>
+            </CardTitle>
+            <CardDescription className="flex-grow text-lg text-slate-900 dark:text-slate-100">
+              {currentQuestion?.question || "Loading..."}
+            </CardDescription>
+          </CardHeader>
+        </Card>
 
-      <Card className="w-full py-4 mt-5">
-        <CardHeader className="flex flex-row items-center">
-          <CardTitle className="mr-5 text-center divide-y divide-zinc-800/50">
-            <div>{questionIndex + 1}</div>
-            <div className="text-base text-slate-400">
-              {game.questions.length}
-            </div>
-          </CardTitle>
-          <CardDescription className="flex-grow text-lg">
-            {currentQuestion?.question || "Loading..."}
-          </CardDescription>
-        </CardHeader>
-      </Card>
+        {/* Answer Input Area */}
+        <div className="flex flex-col w-full flex-grow justify-center mt-4">
+          <BlankAnswerInput
+            key={currentQuestion.id}
+            answer={currentQuestion.answer}
+            setBlankAnswer={setBlankAnswer}
+            setKeywords={setKeywords}
+          />
+        </div>
 
-      <div className="flex flex-col items-center justify-center w-full mt-4">
-        <BlankAnswerInput
-          key={currentQuestion.id} // <-- ADD THIS LINE TO GENRATE EMPTY INPUTS FOR EACH QUESTION
-          answer={currentQuestion.answer}
-          setBlankAnswer={setBlankAnswer}
-          setKeywords={setKeywords}
-        />
-        <Button className="mt-2" onClick={handleNext} disabled={isChecking}>
-          Next <ChevronRight className="w-4 h-4 ml-2" />
-        </Button>
+        {/* Next Button Container */}
+        <div className="flex justify-center w-full mt-4 flex-shrink-0">
+          <Button onClick={handleNext} disabled={isChecking} size="lg">
+            Next <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -24,6 +24,7 @@ type Props = {
 };
 
 const MCQ = ({ game }: Props) => {
+  const [currentGame, setCurrentGame] = React.useState(game);
   const [questionIndex, setQuestionIndex] = React.useState(0);
   const [selectedChoice, setSelectedChoice] = React.useState<number>(0);
   const [correct_Answers, setCorrectAnswers] = React.useState(0);
@@ -41,8 +42,8 @@ const MCQ = ({ game }: Props) => {
   }, [hasEnded])
 
   const currentQuestion = React.useMemo(() => {
-    return game.questions[questionIndex];
-  }, [questionIndex, game.questions]);
+    return currentGame.questions[questionIndex];
+  }, [questionIndex, currentGame.questions]);
 
   const { mutate: checkAnswer, isLoading: isChecking } = useMutation({
     mutationFn: async () => {
@@ -55,12 +56,25 @@ const MCQ = ({ game }: Props) => {
     },
   });
 
+ const { mutate: startGame } = useMutation({
+    mutationFn: async () => {
+     const response = await axios.post("/api/game/start", { gameId: currentGame.id });
+     return response.data as Game;
+    },
+   onSuccess: (updatedGame) => {
+     setCurrentGame((prev) => ({ ...prev, timeStarted: updatedGame.timeStarted }));
+   }
+  });
+
+type EndGameVars = {
+  gameId: string;
+};
+
   const { mutate: endGame } = useMutation({
-  mutationFn: async () => {
-    await axios.post("/api/game/end", { gameId: game.id });
+  mutationFn: async ({ gameId }: EndGameVars) => {
+    await axios.post("/api/game/end", { gameId: gameId });
   },
 });
-
 
   const handleNext = React.useCallback(() => {
     if (isChecking) return;
@@ -69,29 +83,29 @@ const MCQ = ({ game }: Props) => {
         if (isCorrect) {
           toast.success("Correct Answer", {
             style: {
-              background: "#065f46", // light green
-              color: "#d1fae5", // dark green text
+              background: "#065f46",
+              color: "#d1fae5",
             },
           });
           setCorrectAnswers((prev) => prev + 1);
         } else {
           toast.error("Wrong Answer", {
             style: {
-              background: "#991b1b", // light red
-              color: "#fee2e2", // dark red text
+              background: "#991b1b",
+              color: "#fee2e2",
             },
           });
           setWrongAnswers((prev) => prev + 1);
         }
-        if (questionIndex === game.questions.length - 1) {
+        if (questionIndex === currentGame.questions.length - 1) {
           setHasEnded(true);
-          endGame();
+          endGame({ gameId: currentGame.id })
           return;
         }
         setQuestionIndex((prev) => prev + 1);
       },
     });
-  }, [checkAnswer, isChecking, questionIndex, game.questions.length, endGame]);
+  }, [checkAnswer, isChecking, questionIndex, currentGame.id, currentGame.questions.length, endGame]);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -113,6 +127,10 @@ const MCQ = ({ game }: Props) => {
     };
   }, [handleNext]);
 
+React.useEffect(() => {
+  startGame();
+}, [startGame]);
+
   const options = React.useMemo(() => {
     if (!currentQuestion) return [];
     if (!currentQuestion.options) return [];
@@ -121,82 +139,90 @@ const MCQ = ({ game }: Props) => {
 
   if (hasEnded) {
     return (
-        <div className="absolute flex flex-col justify-center -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-          <div className="px-4 py-2 mt-2 font-semibold text-white bg-green-500 rounded-md whitespace-nowrap">
-            Click the Link Below to view your Quiz Report
-          </div>
-          <Link
-            href={`/statistics/${game.id}`}
-            className={cn(buttonVariants({ size: "lg" }), "mt-2")}
-          >
-            View Report
-            <BarChart className="w-4 h-4 ml-2" />
-          </Link>
-        </div>  
+        <div className="absolute inset-x-0 top-20 bottom-0">
+  <div className="flex flex-col items-center justify-center h-full pb-10 text-center">
+
+    <p className="mt-4 text-muted-foreground">
+      You have completed the quiz!
+      <br />
+      Click the button below to view your report.
+    </p>
+
+    <Link
+      href={`/statistics/${currentGame.id}`}
+      className={cn(buttonVariants({ size: "lg" }), "mt-6")}
+    >
+      View Report
+      <BarChart className="w-4 h-4 ml-2" />
+    </Link>
+  </div>
+</div>
     );
   }
 
   return (
-    <div className="absolute -translate-x-1/2 -translate-y-1/2 md:w-[80vw] max-w-4xl w-[80vw] h-[75vh] top-1/2 left-1/2">
-      <div className="flex items-center justify-between w-full">
-        {/* Left group: Topic + Timer */}
-        <div className="flex flex-col scale-90">
-          <p className="flex items-center">
-            <span className="mr-2 text-slate-400">Topic</span>
-            <span className="px-2 py-1 text-white rounded-lg bg-slate-800">
-              {game.topic}
-            </span>
-          </p>
-          <div className="flex items-center text-slate-400 py-2">
-            <Timer className="mr-2" />
-            {formatTimeDelta(differenceInSeconds(now, game.timeStarted))}
+    <div className="absolute top-17 left-0 right-0 bottom-0">
+      <div className="flex flex-col h-full max-w-4xl mx-auto px-4 sm:px-8 pb-8">
+        <div className="flex items-center justify-between w-full flex-shrink-0">
+          <div className="flex flex-col">
+            <p className="flex items-center">
+              <span className="mr-2 text-slate-500 dark:text-slate-400">Topic</span>
+              <span className="px-2 py-1 text-white rounded-lg bg-slate-800 dark:bg-slate-700">
+                {currentGame.topic}
+              </span>
+            </p>
+            <div className="flex items-center mt-2 text-slate-500 dark:text-slate-400">
+              <Timer className="mr-2" />
+              {currentGame.timeStarted ? formatTimeDelta(differenceInSeconds(now, currentGame.timeStarted)) : "0s"}
+            </div>
           </div>
+          <MCQCounter
+            correctAnswers={correct_Answers}
+            wrongAnswers={wrong_Answers}
+          />
         </div>
 
-        {/* Right: Counter */}
-        <MCQCounter
-          correctAnswers={correct_Answers}
-          wrongAnswers={wrong_Answers}
-        />
-      </div>
-
-      <Card className="w-full py-4 mt-5">
-        <CardHeader className="flex flex-row items-center">
-          <CardTitle className="mr-5 text-center divide-y divide-zinc-800/50">
-            <div>{questionIndex + 1}</div>
-            <div className="text-base text-slate-400">
-              {game.questions.length}
-            </div>
-          </CardTitle>
-          <CardDescription className="flex-grow text-lg">
-            {currentQuestion?.question || "Loading..."}
-          </CardDescription>
-        </CardHeader>
-      </Card>
-
-      <div className="flex flex-col items-center justify-center w-full mt-4">
-        {options.map((option, index) => {
-          return (
-            <Button
-              key={index}
-              className="justify-start w-full py-8 mb-4"
-              variant={selectedChoice === index ? "default" : "secondary"}
-              onClick={() => {
-                setSelectedChoice(index);
-              }}
-            >
-              <div className="flex items-center justify-start">
-                <div className="p-2 px-3 mr-5 border rounded-md">
-                  {index + 1}
-                </div>
-                <div className="text-start">{option}</div>
+        <Card className="w-full mt-4 flex-shrink-0">
+          <CardHeader className="flex flex-row items-center">
+            <CardTitle className="mr-5 text-center divide-y divide-zinc-600/50">
+              <div>{questionIndex + 1}</div>
+              <div className="text-base text-slate-400">
+                {currentGame.questions.length}
               </div>
+            </CardTitle>
+            <CardDescription className="flex-grow text-lg text-slate-900 dark:text-slate-100">
+              {currentQuestion?.question || "Loading..."}
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        <div className="flex flex-col w-full flex-grow mt-4 space-y-2 md:space-y-4">
+          {options.map((option, index) => {
+            return (
+              <Button
+                key={index}
+                className="justify-start w-full h-auto py-3 whitespace-normal"
+                variant={selectedChoice === index ? "default" : "secondary"}
+                onClick={() => {
+                  setSelectedChoice(index);
+                }}
+              >
+                <div className="flex items-center justify-start text-left">
+                  <div className="p-2 px-3 mr-5 border rounded-md">
+                    {index + 1}
+                  </div>
+                  <div className="text-base">{option}</div>
+                </div>
+              </Button>
+            );
+          })}
+        </div>
+
+        <div className="flex justify-center w-full mt-4 flex-shrink-0">
+            <Button onClick={handleNext} disabled={isChecking} size="lg">
+              Next <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
-          );
-        })}
-        <Button className="mt-2" onClick={handleNext} disabled={isChecking}>
-          Next <ChevronRight className="w-4 h-4 ml-2" />
-        </Button>
+        </div>
       </div>
     </div>
   );

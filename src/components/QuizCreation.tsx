@@ -16,7 +16,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -95,7 +94,7 @@ const QuizCreation = ({topicParams}: Props) => {
       <Card className="w-[350px] max-w-full">
         <CardHeader>
           <CardTitle className="font-bold text-2xl">Create a Quiz</CardTitle>
-          <CardDescription>Choose a topic</CardDescription>
+          <CardDescription>Enter a topic and number of questions.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -108,10 +107,7 @@ const QuizCreation = ({topicParams}: Props) => {
                     <FormLabel>Topic</FormLabel>
                     <FormControl>
                       <Input placeholder="Enter a topic" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      Please enter a topic for your quiz.
-                    </FormDescription>
+                    </FormControl>                    
                     <FormMessage />
                   </FormItem>
                 )}
