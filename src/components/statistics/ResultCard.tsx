@@ -8,8 +8,8 @@ type Props = {
 
 const ResultCard = ({accuracy}: Props) => {
   return (
-    <Card className="md:col-span-7">
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
+    <Card className="md:col-span-6">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <CardTitle className="text-2xl font-bold">
                 Results
             </CardTitle>
@@ -18,7 +18,7 @@ const ResultCard = ({accuracy}: Props) => {
         <CardContent className="flex flex-col items-center justify-center h-3/5">
             {accuracy >= 75 && (
                 <>
-                <Trophy className='mr-4' stroke='gold' size={50}/>
+                <Trophy className='mr-4' stroke='gold' size={80}/>
                 <div className="flex flex-col text-2xl font-semibold text-yellow-400">
                     <span>Impressive</span>
                     <span className="text-sm text-center text-black dark:text-white opacity-50">
@@ -29,7 +29,7 @@ const ResultCard = ({accuracy}: Props) => {
             )}
             {accuracy < 75 && accuracy >= 25 && (
                 <>
-                <Trophy className='mr-4' stroke='silver' size={50}/>
+                <Trophy className='mr-4 stroke-slate-400' size={80}/>
                 <div className="flex flex-col text-2xl font-semibold text-slate-400">
                     <span>Good Job</span>
                     <span className="text-sm text-center text-black dark:text-white opacity-50">
@@ -40,7 +40,7 @@ const ResultCard = ({accuracy}: Props) => {
             )}
             {accuracy < 25 && accuracy >= 0 && (
                 <>
-                <Trophy className='mr-4' stroke='red' size={50}/>
+                <Trophy className='mr-4' stroke='red' size={80}/>
                 <div className="flex flex-col text-2xl font-semibold text-red-400">
                     <span>Nice Try</span>
                     <span className="text-sm text-center text-black dark:text-white opacity-50">

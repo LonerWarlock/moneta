@@ -38,9 +38,9 @@ const HistoryComponent = async ({ limit, userId }: Props) => {
           >
             <div className="flex items-center space-x-4">
               {isMcq ? (
-                <CopyCheck className="w-6 h-6 text-green-500" />
+                <CopyCheck className="w-6 h-6" />
               ) : (
-                <Edit2 className="w-6 h-6 text-blue-500" />
+                <Edit2 className="w-6 h-6" />
               )}
               <div className="flex flex-col space-y-1">
                 <Link
@@ -51,16 +51,18 @@ const HistoryComponent = async ({ limit, userId }: Props) => {
                 </Link>
                 <p className="flex items-center text-sm text-muted-foreground">
                   <Clock className="w-4 h-4 mr-1.5" />
-                  {new Date(game.timeStarted).toLocaleString()}
+                  {new Date(game.timeStarted).toLocaleString([], {
+                    year: "numeric",
+                    month: "numeric",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
                 </p>
               </div>
             </div>
 
-            <div
-              className={`px-3 py-1.5 text-sm font-bold rounded-full text-white ${
-                isMcq ? "bg-green-500" : "bg-blue-500"
-              }`}
-            >
+            <div className="px-3 py-1.5 text-sm font-bold rounded-full text-white bg-slate-800 dark:bg-white dark:text-slate-800">
               {isMcq ? "MCQ" : "Open Ended"}
             </div>
           </div>

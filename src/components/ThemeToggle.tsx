@@ -5,41 +5,30 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export function ThemeToggle({
-    className, ...props
-} : React.HTMLAttributes<HTMLDivElement>) {
-  const { setTheme } = useTheme();
+  className, ...props
+}: React.HTMLAttributes<HTMLButtonElement>) {
+  // We need `theme` to know the current state and `setTheme` to change it
+  const { theme, setTheme } = useTheme();
+
+  // This function will handle the toggle logic
+  const toggleTheme = () => {
+    // If the current theme is dark, switch to light. Otherwise, switch to dark.
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
-    <div className={className} {...props}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
-            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setTheme("light")}>
-            Light
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("dark")}>
-            Dark
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("system")}>
-            System
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+    <Button
+      variant="outline"
+      size="icon"
+      className={className}
+      onClick={toggleTheme}
+      {...props}
+    >
+      <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+      <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+      <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }
-// COPIED FROM SHADCN & TURNED INTO REUSABLE COMPONENT

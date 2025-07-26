@@ -22,7 +22,7 @@ export default async function Home() {
         </CardDescription>
       </CardHeader>
       <CardContent className="text-center">
-        <SignInButton text="Sign In With Google"/>  
+        <SignInButton text="Sign In With Google" image="/google.png"/>  
       </CardContent>
     </Card>
   </div>);

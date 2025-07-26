@@ -43,11 +43,16 @@ const OpenEnded = ({ game }: Props) => {
   // --- Start of Timer Fix Logic ---
   const { mutate: startGame } = useMutation({
     mutationFn: async () => {
-      const response = await axios.post("/api/game/start", { gameId: currentGame.id });
+      const response = await axios.post("/api/game/start", {
+        gameId: currentGame.id,
+      });
       return response.data as Game;
     },
     onSuccess: (updatedGame) => {
-      setCurrentGame((prev) => ({ ...prev, timeStarted: updatedGame.timeStarted }));
+      setCurrentGame((prev) => ({
+        ...prev,
+        timeStarted: updatedGame.timeStarted,
+      }));
     },
   });
 
@@ -75,7 +80,9 @@ const OpenEnded = ({ game }: Props) => {
 
   const handleNext = React.useCallback(() => {
     if (isChecking) return;
-    const userInput = (document.querySelector("#user-blank-input") as HTMLInputElement)?.value || "";
+    const userInput =
+      (document.querySelector("#user-blank-input") as HTMLInputElement)
+        ?.value || "";
     const payload = {
       questionId: currentQuestion.id,
       userAnswer: userInput,
@@ -90,7 +97,15 @@ const OpenEnded = ({ game }: Props) => {
             <div style={{ fontSize: "0.875rem", opacity: 0.8 }}>
               Answers are matched based on similarity comparisons.
             </div>
-          </div>
+          </div>,
+          {
+            position: "top-right",
+            duration: 2000,
+            style: {
+              background: "#334155",
+              color: "#f1f5f9",
+            }
+          }
         );
 
         if (questionIndex === currentGame.questions.length - 1) {
@@ -130,8 +145,8 @@ const OpenEnded = ({ game }: Props) => {
         <div className="flex flex-col items-center justify-center h-full pb-10 p-4 text-center">
           <p className="mt-4 text-muted-foreground">
             You have completed the quiz!
-      <br />
-      Click the button below to view your report.
+            <br />
+            Click the button below to view your report.
           </p>
           <Link
             href={`/statistics/${currentGame.id}`}
@@ -152,14 +167,20 @@ const OpenEnded = ({ game }: Props) => {
         <div className="flex items-center justify-between w-full flex-shrink-0">
           <div className="flex flex-col">
             <p className="flex items-center">
-              <span className="mr-2 text-slate-500 dark:text-slate-400">Topic</span>
+              <span className="mr-2 text-slate-500 dark:text-slate-400">
+                Topic
+              </span>
               <span className="px-2 py-1 text-white rounded-lg bg-slate-800 dark:bg-slate-700">
                 {currentGame.topic}
               </span>
             </p>
             <div className="flex items-center mt-2 text-slate-500 dark:text-slate-400">
               <Timer className="mr-2" />
-              {currentGame.timeStarted ? formatTimeDelta(differenceInSeconds(now, currentGame.timeStarted)) : "00:00"}
+              {currentGame.timeStarted
+                ? formatTimeDelta(
+                    differenceInSeconds(now, currentGame.timeStarted)
+                  )
+                : "00:00"}
             </div>
           </div>
         </div>

@@ -82,6 +82,8 @@ type EndGameVars = {
       onSuccess: ({ isCorrect }) => {
         if (isCorrect) {
           toast.success("Correct Answer", {
+            duration: 2000,
+            position: "top-right",
             style: {
               background: "#065f46",
               color: "#d1fae5",
@@ -90,6 +92,8 @@ type EndGameVars = {
           setCorrectAnswers((prev) => prev + 1);
         } else {
           toast.error("Wrong Answer", {
+            duration: 2000,
+            position: "top-right",
             style: {
               background: "#991b1b",
               color: "#fee2e2",

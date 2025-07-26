@@ -17,7 +17,7 @@ const TimeTaken = ({timeEnded, timeStarted}: Props) => {
       : "0s";
 
   return (
-    <Card className="md:col-span-4">
+    <Card className="md:col-span-3">
         <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
             <CardTitle className="text-2xl font-bold">
                 Time Taken

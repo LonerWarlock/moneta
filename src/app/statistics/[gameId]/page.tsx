@@ -64,7 +64,7 @@ const StatisticsPage = async ({ params }: Props) => {
         </div>
       </div>
 
-      <div className="grid gap-4 mt-4 md:grid-cols-7">
+      <div className="grid gap-4 mt-4 md:grid-cols-6">
         <ResultCard accuracy={accuracy} />
         <AverageAccuracy accuracy={accuracy} />
         <TimeTaken timeEnded={(game.timeEnded || new Date())} timeStarted={game.timeStarted} />
