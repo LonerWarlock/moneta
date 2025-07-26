@@ -7,7 +7,7 @@ import HotTopicsCard from "@/components/dashboard/HotTopicsCard";
 import RecentActivities from "@/components/dashboard/RecentActivity";
 
 export const metadata = {
-  title: "Dashboard | Quizmefy",
+  title: "Dashboard | Moneta",
   description: "Your personal quiz dashboard.",
 };
 
