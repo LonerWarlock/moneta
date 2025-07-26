@@ -2,18 +2,18 @@ import { NextResponse } from "next/server";
 import { quizCreationSchema } from "@/schemas/form/quiz";   
 import { ZodError } from "zod";
 import { strict_output } from "@/lib/gpt";
-import { getAuthSession } from "@/lib/nextauth";
+// import { getAuthSession } from "@/lib/nextauth";
 
 // POST /api/questions
 export const POST = async (req : Request) => {
 try {
-     const session = await getAuthSession();
-     if(!session?.user){
-         return NextResponse.json(
-             { error: "You must be logged in to create a quiz" },
-             { status: 401 }
-         )
-     }
+    // const session = await getAuthSession();
+    // if(!session?.user){
+    //     return NextResponse.json(
+    //         { error: "You must be logged in to create a quiz" },
+    //         { status: 401 }
+    //     )
+    // }
 
     const body = await req.json();
     const {topic, type, amount} = quizCreationSchema.parse(body);
