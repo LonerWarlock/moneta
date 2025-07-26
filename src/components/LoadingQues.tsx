@@ -17,7 +17,7 @@ const loadingTexts = [
 ]
 
 const LoadingQues = ({finished}: Props) => {
-    const { theme } = useTheme();
+    const { resolvedTheme } = useTheme();
     const [progress, setProgress] = React.useState(0);
     const [loadingText, setLoadingText] = React.useState(loadingTexts[0]);
 
@@ -46,7 +46,7 @@ const LoadingQues = ({finished}: Props) => {
  return (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] md:w-[60vw] flex flex-col items-center">
         <Image
-            src={theme === "dark" ? "/Loading-dark.gif" : "/Loading.gif"}
+            src={resolvedTheme === "dark" ? "/Loading-dark.gif" : "/Loading.gif"}
             width={400}
             height={400}
             alt="Loading animation"
