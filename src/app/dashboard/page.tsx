@@ -1,3 +1,4 @@
+// src/app/dashboard/page.tsx
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -5,11 +6,9 @@ import QuizMeCard from "@/components/QuizMeCard";
 import HistoryCard from "@/components/dashboard/HistoryCard";
 import HotTopicsCard from "@/components/dashboard/HotTopicsCard";
 import RecentActivities from "@/components/dashboard/RecentActivity";
+import NotesCard from "@/components/NotesCard"; // <<< ADD THIS IMPORT
 
-export const metadata = {
-  title: "Dashboard | Moneta",
-  description: "Your personal quiz dashboard.",
-};
+// ... (metadata is unchanged)
 
 const Dashboard = async () => {
   const session = await getAuthSession();
@@ -26,8 +25,13 @@ const Dashboard = async () => {
         </h1>
       </div>
 
+      {/* NEW: Notes Card in its own full-width row to be prominent */}
+      <div className="grid gap-8 mt-8 md:grid-cols-1"> 
+        <NotesCard />
+      </div>
+
       <div className="grid gap-8 mt-8 md:grid-cols-2">
-        {/* Main Action Cards */}
+        {/* Existing Main Action Cards (Quiz and History) */}
         <QuizMeCard />
         <HistoryCard />
       </div>
