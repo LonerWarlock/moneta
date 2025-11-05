@@ -17,9 +17,15 @@ export const metadata = {
 const fourthYearNotes = [
     // --- Semester VII Notes ---
     { 
-        title: "Laboratory Practice III (LP-III) Notes", 
+        title: "LP-III", 
         link: "https://drive.google.com/file/d/11oKT3W67wu1Oy6x3ogiMnZx6diiKnRoJ/view?usp=drive_link", // <--- UPDATE THIS LINK
-        description: " Comprehensive notes for LP-III & ISR.",
+        description: "Laboratory Practice III",
+        semester: "VII"
+    },
+    { 
+        title: "ISR", 
+        link: "https://drive.google.com/drive/folders/11ZPlZWe_Ds_DtLzM5dM6ueVii5NsWwMq?usp=drive_link", // <--- UPDATE THIS LINK
+        description: "Information Storage and Retrieval",
         semester: "VII"
     },
     
