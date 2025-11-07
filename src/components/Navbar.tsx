@@ -16,8 +16,9 @@ const Navbar = async () => {
   const session = await getAuthSession();
   
   // Check if the user is logged in AND their email matches the admin email
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-  const isAdmin = session?.user?.email === ADMIN_EMAIL;
+  const ADMIN_EMAIL_1 = process.env.ADMIN_EMAIL_1;
+  const ADMIN_EMAIL_2 = process.env.ADMIN_EMAIL_2;
+  const isAdmin = session?.user?.email === ADMIN_EMAIL_1 || session?.user?.email === ADMIN_EMAIL_2;
     
   return (
     <div className="fixed inset-x-0 top-0 bg-white dark:bg-gray-950 z-[10] h-fit border-b border-zinc-300  py-2 ">
