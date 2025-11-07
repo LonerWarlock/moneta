@@ -18,7 +18,7 @@ export default async function Home() {
       <CardHeader className="text-center">
         <CardTitle>Moneta</CardTitle>
         <CardDescription>
-          Moneta is a content distribution app that helps you learn and retain knowledge through interactive quizzes.
+          A content distribution app that helps you learn and retain knowledge through interactive quizzes.
         </CardDescription>
       </CardHeader>
       <CardContent className="text-center">
