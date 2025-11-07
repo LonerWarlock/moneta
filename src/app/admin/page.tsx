@@ -19,9 +19,10 @@ const AdminPage = async () => {
   
   // === 1. SECURITY CHECK (Access Control by Hardcoded Email from .env) ===
   // NOTE: You must set ADMIN_EMAIL="your_admin_email@example.com" in your .env file
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL; 
+  const ADMIN_EMAIL_1 = process.env.ADMIN_EMAIL_1;
+  const ADMIN_EMAIL_2 = process.env.ADMIN_EMAIL_2;
   
-  if (!session?.user || session.user.email !== ADMIN_EMAIL) {
+  if (!session?.user || (session.user.email !== ADMIN_EMAIL_1 && session.user.email !== ADMIN_EMAIL_2)) {
     // Redirect unauthorized users (keeping the page secret)
     return redirect("/");
   }
