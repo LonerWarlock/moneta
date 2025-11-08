@@ -35,6 +35,8 @@ const fourthYearNotes = [
       { name: "Feedforward Neural Network (CIFAR-10 Dataset)", link: "https://colab.research.google.com/drive/1L3vMqV_xA4UcPhY6zS8RYn_1Tf5EBOYo?usp=sharing" },
       { name: "Convolutional Neural Network (MNIST Dataset)", link: "https://colab.research.google.com/drive/1wmB4r8-WTHr0NEdXWwK86Y3aMSsYbBmH?usp=sharing" },
       { name: "Convolutional Neural Network (CIFAR-10 Dataset)", link: "https://colab.research.google.com/drive/1pktDtusoaTfOi6Um2to1Tm-0Rd3t7gNW?usp=drive_link" },
+      { name: "Anomaly Detection (Credit Card Dataset)", link: "https://colab.research.google.com/drive/1CExfKTfLcsz_GvK2g-oUt9guHx63W__a?usp=drive_link"},
+      { name: "Continuous Bag of Words (CBOW)", link: "https://colab.research.google.com/drive/1E_7nyxPDCyVKjAP6OsxljuY58Uch69Kv?usp=sharing"},
     ],
   },
   // --- Semester VIII Notes ---
