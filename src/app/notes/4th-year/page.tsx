@@ -38,8 +38,8 @@ const fourthYearNotes = [
       { name: "Anomaly Detection (ECG Dataset)", link: "https://colab.research.google.com/drive/1z9aiVZkrhdCpFb4ZvjSwXWIIc4qM51pM?usp=sharing"},
       { name: "Anomaly Detection (Credit Card Dataset)", link: "https://colab.research.google.com/drive/1CExfKTfLcsz_GvK2g-oUt9guHx63W__a?usp=drive_link"},
       { name: "Continuous Bag of Words (CBOW)", link: "https://colab.research.google.com/drive/1E_7nyxPDCyVKjAP6OsxljuY58Uch69Kv?usp=sharing"},
-      { name: "Transfer Learning (VGG16)", link: "https://colab.research.google.com/drive/1nSm1U56Fz4psJxlggTeQWdUlczU6YfbM?usp=sharing" },
-      { name: "Datasets", link: "https://drive.google.com/drive/folders/1Kv2HcDKaFByzI1EAU5wgsNCuVqK-uRvc?usp=sharing" },
+      { name: "Transfer Learning (VGG16)", link: "https://colab.research.google.com/drive/1c8r-xJDJ7t7YJpYto2P34q-cBDUU_i4d?usp=sharing" },
+      { name: "Datasets", link: "https://drive.google.com/drive/folders/1dylqJotdNxDNoMc8AsDCULxVLmlG0Qj0?usp=sharing" },
     ],
   },
   // --- Semester VIII Notes ---
