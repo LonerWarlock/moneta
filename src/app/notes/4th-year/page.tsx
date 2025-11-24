@@ -19,11 +19,23 @@ export const metadata = {
 const fourthYearNotes = [
   // --- Semester VII Notes ---
   {
+    title: "ISR",
+    description: "Information and Storage Retrieval",
+    semester: "VII",
+    topics: [
+        {name: "Unit 1: Introduction to Information Retrieval", link: "https://drive.google.com/file/d/15pHjnkG2qmtN2dk4kbPzy-5sHK39fuwD/view?usp=drive_link"},
+        {name: "Unit 2: Indexing and Searching Techniques", link: "https://drive.google.com/file/d/1W2vfuDEYaNiqK1341nECOXBt9KotrJsg/view?usp=drive_link"},
+        {name: "Unit 3: Evaluation and Visualization of Information Retrieval System", link: "https://drive.google.com/file/d/1LGWWSqAxl9w1Di1sGN3ScZt6O2lf7pA4/view?usp=drive_link"},
+        {name: "ISR Endsem Decode", link: "https://drive.google.com/file/d/12Plkdja_5VHGsczf7r4KuA2qmAhVMU7j/view?usp=drive_link"},
+        {name: "PYQs", link: "https://drive.google.com/drive/folders/1ScTrOXZELzwoSNtujicfN9Taq_c6RTz5?usp=drive_link"},
+    ],
+  },
+  {
     title: "LP-III",
     description: "Laboratory Practice III",
     semester: "VII",
     topics: [
-      { name: "LP-III Oral Notes", link: "https://drive.google.com/drive/lp3-topic1-link" },
+      { name: "LP-III Oral Notes", link: "https://drive.google.com/file/d/11oKT3W67wu1Oy6x3ogiMnZx6diiKnRoJ/view?usp=drive_link" },
     ],
   },
   {
