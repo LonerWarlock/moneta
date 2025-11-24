@@ -1,10 +1,8 @@
 // src/app/notes/3rd-year/page.tsx
 import React from "react";
-import { getAuthSession } from "@/lib/nextauth";
-import { redirect } from "next/navigation";
-// Import all necessary card components
+// import { getAuthSession } from "@/lib/nextauth";
+// import { redirect } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
-// Import the new Client Component - Ensure this file exists at the path below
 import { SubjectAccordion } from "@/components/Notes/SubjectAccordion";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
@@ -107,10 +105,10 @@ type Subject = {
 
 
 const ThirdYearNotesPage = async ({}) => {
-  const session = await getAuthSession();
-  if (!session?.user) {
-    return redirect("/");
-  }
+//   const session = await getAuthSession();
+//   if (!session?.user) {
+//     return redirect("/");
+//   }
 
   // Filter notes for SEMESTER V and VI
   const semVNotes = thirdYearNotes.filter(note => note.semester === "V") as Subject[];
