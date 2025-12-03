@@ -40,6 +40,7 @@ const fourthYearNotes = [
         {name: "Unit 2: Convolutional Neural Network", link: "https://drive.google.com/file/d/1uaw-AD7zqcF8b0zbmhEHzSf67jsCq44Y/view?usp=drive_link"},
         {name: "Unit 3: Recurrent Neural Networks ", link: "https://drive.google.com/file/d/1vFtjrO_Uk1pBId6HXlhiCtOnweiJic65/view?usp=drive_link"},
         {name: "Unit 4: Autoencoders", link: "https://drive.google.com/file/d/1nVROejMzgEOz9-AAHDoAHhmzuqOK-e8G/view?usp=sharing"},
+        {name: "Unit 5: Representation Learning", link:"https://drive.google.com/file/d/1pLbjQj5kLO60NhFzFQTjPbDQ0MlFjanz/view?usp=sharing"},
         {name: "DL Endsem Decode", link: "https://drive.google.com/file/d/1Gvgq0N8uuPK991NH_zWD1UeLFTySldTt/view?usp=drive_link"},
         {name: "DL Endsem Technical", link: "https://drive.google.com/file/d/1DO_Kvl2Wy-FGuxOJb5uibrpgzJij-l28/view?usp=drive_link"},
         {name: "PYQs", link: "https://drive.google.com/drive/folders/1Ul_hsY2I19rJkPcxFtUPMF7D2_WKPKj1?usp=drive_link"},
