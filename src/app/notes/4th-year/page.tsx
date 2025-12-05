@@ -27,6 +27,7 @@ const fourthYearNotes = [
         {name: "Unit 2: Indexing and Searching Techniques", link: "https://drive.google.com/file/d/1W2vfuDEYaNiqK1341nECOXBt9KotrJsg/view?usp=drive_link"},
         {name: "Unit 3: Evaluation and Visualization of Information Retrieval System", link: "https://drive.google.com/file/d/1LGWWSqAxl9w1Di1sGN3ScZt6O2lf7pA4/view?usp=drive_link"},
         {name: "Unit 4: Distributed and Multimedia IR", link: "https://drive.google.com/file/d/1TDAMLOr7CvjDqAVnVKEkw9dWFCWodRKT/view?usp=sharing"},
+        {name: "Unit 5: Web Searching", link: "https://drive.google.com/file/d/1PiqcA2EEa-CL88BocEC-kPfVOId78dJP/view?usp=drive_link"},
         {name: "ISR Endsem Decode", link: "https://drive.google.com/file/d/12Plkdja_5VHGsczf7r4KuA2qmAhVMU7j/view?usp=drive_link"},
         {name: "PYQs", link: "https://drive.google.com/drive/folders/1ScTrOXZELzwoSNtujicfN9Taq_c6RTz5?usp=drive_link"},
     ],
