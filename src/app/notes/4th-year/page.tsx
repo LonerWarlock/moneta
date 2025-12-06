@@ -33,6 +33,21 @@ const fourthYearNotes = [
     ],
   },
   {
+    title: "SPM",
+    description: "Software Project Management",
+    semester: "VII",
+    topics: [
+        {name: "Unit 1: Introduction to Software Project Management", link: "https://drive.google.com/file/d/11AsP7MkjSkzzzRH3Ex4W8DThlVx2YXIZ/view?usp=drive_link"},
+        {name: "Unit 2: Project Design and Evaluation", link: "https://drive.google.com/file/d/1qMCYR6vt8G97q1mV0UKmxiA9hGj-OEck/view?usp=drive_link"},
+        {name: "Unit 3: Activity Planning & Risk Management", link: "https://drive.google.com/file/d/10GKygkW0-9OPfFLtos7KOqA75vpwM6AF/view?usp=drive_link"},
+        //{name: "Unit 4: Project Tracking, Monitoring & Control", link: ""},
+        //{name: "Unit 5: Managing People and Organizing Teams", link: ""},
+        {name: "SPM Endsem Decode", link: "https://drive.google.com/file/d/1cIAZhKBR0judIIUYSvVC_h29dRUE1nUG/view?usp=drive_link"},
+        {name: "SPM Endsem Technical", link: "https://drive.google.com/file/d/16srza3muL9roptcsS8l7jO_G4-F7StMi/view?usp=drive_link"},
+        {name: "PYQs", link: "https://drive.google.com/drive/folders/1qQNQ2fSKTqG9NgNr312oQcFLOliikUnJ?usp=drive_link"},
+    ],
+  },
+  {
     title: "DL",
     description: "Deep Learning",
     semester: "VII",
