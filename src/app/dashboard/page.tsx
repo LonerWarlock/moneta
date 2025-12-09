@@ -2,10 +2,10 @@
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 import React from "react";
-import QuizMeCard from "@/components/QuizMeCard";
-import HistoryCard from "@/components/dashboard/HistoryCard";
-import HotTopicsCard from "@/components/dashboard/HotTopicsCard";
-import RecentActivities from "@/components/dashboard/RecentActivity";
+//import QuizMeCard from "@/components/QuizMeCard";
+//import HistoryCard from "@/components/dashboard/HistoryCard";
+//import HotTopicsCard from "@/components/dashboard/HotTopicsCard";
+//import RecentActivities from "@/components/dashboard/RecentActivity";
 import NotesCard from "@/components/NotesCard"; // <<< ADD THIS IMPORT
 
 // ... (metadata is unchanged)
@@ -32,15 +32,16 @@ const Dashboard = async () => {
 
       <div className="grid gap-8 mt-8 md:grid-cols-2">
         {/* Existing Main Action Cards (Quiz and History) */}
-        <QuizMeCard />
-        <HistoryCard />
+        {/* <QuizMeCard />
+        <HistoryCard /> */}
       </div>
 
       <div className="grid gap-8 mt-8 md:grid-cols-2 lg:grid-cols-7">
         {/* Secondary Info Cards */}
-        <HotTopicsCard />
-        <RecentActivities />
+        {/* <HotTopicsCard />
+        <RecentActivities /> */}
       </div>
+
     </main>
   );
 };

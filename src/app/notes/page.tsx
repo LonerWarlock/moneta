@@ -1,7 +1,7 @@
 // src/app/notes/page.tsx
 import React from "react";
-// import { getAuthSession } from "@/lib/nextauth";
-// import { redirect } from "next/navigation";
+import { getAuthSession } from "@/lib/nextauth";
+import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GraduationCap, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
@@ -31,10 +31,10 @@ const yearButtons = [
 ];
 
 const NotesPage = async () => {
-//   const session = await getAuthSession();
-//   if (!session?.user) {
-//     return redirect("/"); // Redirect unauthenticated users
-//   }
+   const session = await getAuthSession();
+   if (!session?.user) {
+     return redirect("/"); // Redirect unauthenticated users
+   }
 
   return (
     <main className="p-8 mx-auto max-w-4xl">

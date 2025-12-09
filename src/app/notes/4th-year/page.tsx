@@ -1,7 +1,7 @@
 // src/app/notes/4th-year/page.tsx
 import React from "react";
-// import { getAuthSession } from "@/lib/nextauth";
-// import { redirect } from "next/navigation";
+import { getAuthSession } from "@/lib/nextauth";
+import { redirect } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 // Import the new Client Component
 import { SubjectAccordion } from "@/components/Notes/SubjectAccordion";
@@ -115,10 +115,10 @@ type Subject = {
 
 
 const FourthYearNotesPage = async ({}) => {
-//   const session = await getAuthSession();
-//   if (!session?.user) {
-//     return redirect("/");
-//   }
+   const session = await getAuthSession();
+   if (!session?.user) {
+     return redirect("/");
+   }
 
   // Filter notes for each semester
   const semVIINotes = fourthYearNotes.filter(note => note.semester === "VII") as Subject[];

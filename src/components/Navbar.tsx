@@ -1,9 +1,9 @@
-//import SignInButton from "@/components/SignInButton";
+import SignInButton from "@/components/SignInButton";
 import Link from "next/link";
 import React from "react";
 
 import { getAuthSession } from "@/lib/nextauth";
-//import UserAccountNav from "./UserAccountNav";
+import UserAccountNav from "./UserAccountNav";
 import { ThemeToggle } from "./ThemeToggle";
 
 import AdminToggleButton from "./Admin/AdminToggleButton";
@@ -48,13 +48,13 @@ const Navbar = async () => {
             {/* Theme Toggle Button */}
             <ThemeToggle className="mr-3" />
             
-            {/* <div className="flex items-center">
+            <div className="flex items-center">
                 {session?.user ? (
                     <UserAccountNav user={session.user} />
                 ) : (
                     <SignInButton text="Sign In" />
                 )}
-            </div> */}
+            </div>
         </div>
       </div>
     </div>
