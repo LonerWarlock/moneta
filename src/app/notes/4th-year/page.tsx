@@ -64,6 +64,30 @@ const fourthYearNotes = [
     ],
   },
   {
+    title: "HPC",
+    description: "High Performance Computing (Elective III)",
+    semester: "VII",
+    topics: [
+        {name: "Unit 1: ", link: "https://drive.google.com/file/d/1zieGshOyY9g8rBqBt77EaBR6zE6Ettj6/view?usp=drive_link"},
+        {name: "Unit 2: ", link: "https://drive.google.com/file/d/1ZAEKxPo529zYI1Nv_ivwcYzy0_1clk9X/view?usp=drive_link"},
+        {name: "Unit 3: ", link: "https://drive.google.com/file/d/1l2m8uhzosRFM5yJYLhN9aYGJBjqZwPHz/view?usp=drive_link"},
+        //{name: "Unit 4: ", link: ""},
+        //{name: "Unit 5: ", link:""},
+        //{name: "DL Endsem Decode", link: "https://drive.google.com/file/d/1Gvgq0N8uuPK991NH_zWD1UeLFTySldTt/view?usp=drive_link"},
+        //{name: "DL Endsem Technical", link: "https://drive.google.com/file/d/1DO_Kvl2Wy-FGuxOJb5uibrpgzJij-l28/view?usp=drive_link"},
+        {name: "PYQs", link: "https://drive.google.com/drive/folders/10uBA7BMYh09L6wGfyX1Qyxl8aMbcwZSS?usp=drive_link"},
+        {name: "INSEM Question Bank", link: "https://drive.google.com/file/d/1wXL6UYDacORTPkgfT308RPYak17pRSCk/view?usp=drive_link"},
+    ],
+  },
+  {
+    title: "MC",
+    description: "Mobile Computing (Elective III)",
+    semester: "VII",
+    topics: [
+        {name: "PYQs", link: "https://drive.google.com/drive/folders/1-x__VIs-P_ZvMOqB2VhA5kbMVqYKZz2w?usp=drive_link"},
+    ],
+  },
+  {
     title: "LP-III",
     description: "Laboratory Practice III",
     semester: "VII",
