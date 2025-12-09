@@ -68,9 +68,9 @@ const fourthYearNotes = [
     description: "High Performance Computing (Elective III)",
     semester: "VII",
     topics: [
-        {name: "Unit 1: ", link: "https://drive.google.com/file/d/1zieGshOyY9g8rBqBt77EaBR6zE6Ettj6/view?usp=drive_link"},
-        {name: "Unit 2: ", link: "https://drive.google.com/file/d/1ZAEKxPo529zYI1Nv_ivwcYzy0_1clk9X/view?usp=drive_link"},
-        {name: "Unit 3: ", link: "https://drive.google.com/file/d/1l2m8uhzosRFM5yJYLhN9aYGJBjqZwPHz/view?usp=drive_link"},
+        {name: "Unit 1: Introduction to Parallel Computing", link: "https://drive.google.com/file/d/1zieGshOyY9g8rBqBt77EaBR6zE6Ettj6/view?usp=drive_link"},
+        {name: "Unit 2: Principles of Parallel Algorithm Design", link: "https://drive.google.com/file/d/1ZAEKxPo529zYI1Nv_ivwcYzy0_1clk9X/view?usp=drive_link"},
+        {name: "Unit 3: Basic Communication ", link: "https://drive.google.com/file/d/1l2m8uhzosRFM5yJYLhN9aYGJBjqZwPHz/view?usp=drive_link"},
         //{name: "Unit 4: ", link: ""},
         //{name: "Unit 5: ", link:""},
         //{name: "DL Endsem Decode", link: "https://drive.google.com/file/d/1Gvgq0N8uuPK991NH_zWD1UeLFTySldTt/view?usp=drive_link"},
