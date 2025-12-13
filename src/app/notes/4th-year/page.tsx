@@ -43,6 +43,7 @@ const fourthYearNotes = [
         {name: "Unit 3: Activity Planning & Risk Management", link: "https://drive.google.com/file/d/10GKygkW0-9OPfFLtos7KOqA75vpwM6AF/view?usp=drive_link"},
         {name: "Unit 4: Project Tracking, Monitoring & Control", link: "https://drive.google.com/file/d/12O-GDHQ6x3vhbgNo0c4fI1kHil7xjpFI/view?usp=drive_link"},
         {name: "Unit 5: Managing People and Organizing Teams", link: "https://drive.google.com/file/d/1rEcp40QR6UQQ1aT4i6HwYEYYF360WDKB/view?usp=sharing"},
+        {name: "Unit 6: Applications of Software Project Management in Industry", link: "https://drive.google.com/file/d/169mdBoUFkuu9Accblg1HmLIk5jaHBCqo/view?usp=sharing"},
         {name: "SPM Endsem Decode", link: "https://drive.google.com/file/d/1cIAZhKBR0judIIUYSvVC_h29dRUE1nUG/view?usp=drive_link"},
         {name: "SPM Endsem Technical", link: "https://drive.google.com/file/d/16srza3muL9roptcsS8l7jO_G4-F7StMi/view?usp=drive_link"},
         {name: "PYQs", link: "https://drive.google.com/drive/folders/1qQNQ2fSKTqG9NgNr312oQcFLOliikUnJ?usp=drive_link"},
