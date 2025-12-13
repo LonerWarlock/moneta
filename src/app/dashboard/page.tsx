@@ -1,6 +1,6 @@
 // src/app/dashboard/page.tsx
-import { getAuthSession } from "@/lib/nextauth";
-import { redirect } from "next/navigation";
+// import { getAuthSession } from "@/lib/nextauth";
+// import { redirect } from "next/navigation";
 import React from "react";
 //import QuizMeCard from "@/components/QuizMeCard";
 //import HistoryCard from "@/components/dashboard/HistoryCard";
@@ -11,10 +11,10 @@ import NotesCard from "@/components/NotesCard"; // <<< ADD THIS IMPORT
 // ... (metadata is unchanged)
 
 const Dashboard = async () => {
-  const session = await getAuthSession();
-  if (!session?.user) {
-    return redirect("/");
-  }
+//   const session = await getAuthSession();
+//   if (!session?.user) {
+//     return redirect("/");
+//   }
 
   return (
     <main className="p-8 mx-auto max-w-7xl">
