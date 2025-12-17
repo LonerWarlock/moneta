@@ -73,11 +73,10 @@ const fourthYearNotes = [
     topics: [
         {name: "Unit 1: Introduction to Parallel Computing", link: "https://drive.google.com/file/d/1zieGshOyY9g8rBqBt77EaBR6zE6Ettj6/view?usp=drive_link"},
         {name: "Unit 2: Principles of Parallel Algorithm Design", link: "https://drive.google.com/file/d/1ZAEKxPo529zYI1Nv_ivwcYzy0_1clk9X/view?usp=drive_link"},
-        {name: "Unit 3: Basic Communication ", link: "https://drive.google.com/file/d/1l2m8uhzosRFM5yJYLhN9aYGJBjqZwPHz/view?usp=drive_link"},
+        {name: "Unit 3: Basic Communication", link: "https://drive.google.com/file/d/1l2m8uhzosRFM5yJYLhN9aYGJBjqZwPHz/view?usp=drive_link"},
         {name: "Unit 4: Analytical Modeling of Parallel Programs", link: "https://drive.google.com/file/d/1BFwdoGbliU_9otFrV-3CWtKlqR_2yGU1/view?usp=drive_link"},
         {name: "Unit 5: Shared Memory Programming", link:"https://drive.google.com/file/d/1VZXN6E4CjlcGQbjAhV4VEZpWPvbKr7Ah/view?usp=sharing"},
-        //{name: "DL Endsem Decode", link: "https://drive.google.com/file/d/1Gvgq0N8uuPK991NH_zWD1UeLFTySldTt/view?usp=drive_link"},
-        //{name: "DL Endsem Technical", link: "https://drive.google.com/file/d/1DO_Kvl2Wy-FGuxOJb5uibrpgzJij-l28/view?usp=drive_link"},
+        {name: "Unit 6: Parallel Algorithms and Applications", link: "https://drive.google.com/file/d/1gmtR8m4zFJ7h98KQsG-Y1gGba2txLjDx/view?usp=drive_link"},
         {name: "PYQs", link: "https://drive.google.com/drive/folders/10uBA7BMYh09L6wGfyX1Qyxl8aMbcwZSS?usp=drive_link"},
         {name: "INSEM Question Bank", link: "https://drive.google.com/file/d/1wXL6UYDacORTPkgfT308RPYak17pRSCk/view?usp=drive_link"},
     ],
