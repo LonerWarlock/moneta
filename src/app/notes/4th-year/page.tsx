@@ -90,6 +90,19 @@ const fourthYearNotes = [
     ],
   },
   {
+    title: "DevOps",
+    description: "Introduction to DevOps (Elective IV)",
+    semester: "VII",
+    topics: [
+        {name: "Unit 1: Introduction to DevOps and the Culture", link: "https://drive.google.com/file/d/1JHkJZMk7B1dvmoTNPRZkvLBTt4-xzZNy/view?usp=drive_link"},
+        {name: "Unit 2: Microservices Architecture and Cloud Native Development", link: "https://drive.google.com/file/d/1oHN7_vij401cY9pcvieSII5rtsRDVc4c/view?usp=drive_link"},
+        {name: "Unit 3: Will be uploaded by 19 Dec 3:00pm", link: ""},
+        {name: "Unit 4: Will be uploaded by 19 Dec 9:00pm", link: ""},
+        {name: "Unit 5: Will be uploaded by 20 Dec 3:00pm", link: ""},
+        {name: "Unit 6: Will be uploaded by 20 Dec 9:00pm", link: ""},
+    ],
+  },
+  {
     title: "LP-III",
     description: "Laboratory Practice III",
     semester: "VII",
