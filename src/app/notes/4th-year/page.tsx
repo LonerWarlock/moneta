@@ -100,6 +100,8 @@ const fourthYearNotes = [
         {name: "Unit 4: Will be uploaded by 19 Dec 9:00pm", link: ""},
         {name: "Unit 5: Will be uploaded by 20 Dec 3:00pm", link: ""},
         {name: "Unit 6: Will be uploaded by 20 Dec 9:00pm", link: ""},
+        {name: "DevOps Endsem Techknowledge", link: "https://drive.google.com/file/d/1OhrjdRlSCcyEuFi23BHHyOYkEaIRgsmB/view?usp=sharing"},
+        {name: "PYQs", link: "https://drive.google.com/drive/folders/1Cei5lOw1qcEMJo_FJusRrZu9Ld3ygwpq?usp=drive_link"},
     ],
   },
   {
