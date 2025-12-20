@@ -99,7 +99,7 @@ const fourthYearNotes = [
         {name: "Unit 3: Continuous Integration and Test-Driven Development", link: "https://drive.google.com/file/d/1jgqR8KhJ7Zwlnj6h0yHgcRZku4mSzN5a/view?usp=drive_link"},
         {name: "Unit 4: Continuous Deployment and Orchestration", link: "https://drive.google.com/file/d/1lJwsIREwa4jGI3RwgW0jDJEu0Zu6H0de/view?usp=sharing"},
         {name: "Unit 5: Continuous Monitoring and Site Reliability", link: "https://drive.google.com/file/d/1t2tv8czdxP4Ilur_2w7GJApyNZPjStv4/view?usp=drive_link"},
-        {name: "Unit 6: Will be uploaded by 20 Dec 9:00pm", link: ""},
+        {name: "Unit 6: DevOps Tooling and Case Studies", link: "https://drive.google.com/file/d/1HZ6bhTKGJHWkazkU0cHfw3oFKmt4YO2k/view?usp=drive_link"},
         {name: "DevOps Endsem Techknowledge", link: "https://drive.google.com/file/d/1OhrjdRlSCcyEuFi23BHHyOYkEaIRgsmB/view?usp=sharing"},
         {name: "PYQs", link: "https://drive.google.com/drive/folders/1Cei5lOw1qcEMJo_FJusRrZu9Ld3ygwpq?usp=drive_link"},
     ],
