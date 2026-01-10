@@ -1,6 +1,6 @@
 import React from "react";
-// import { getAuthSession } from "@/lib/nextauth";
-// import { redirect } from "next/navigation";
+import { getAuthSession } from "@/lib/nextauth";
+import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle, } from "@/components/ui/card";
 import { ChevronLeft, CalendarClock } from "lucide-react"; 
 import Link from "next/link";
@@ -12,13 +12,12 @@ export const metadata = {
   description: "Access your curated Google Drive study notes for 2nd Year.",
 };
 
-// Removed the 'secondYearNotes' array as we are replacing the document list.
 
 const SecondYearNotesPage = async () => {
-//    const session = await getAuthSession();
-//    if (!session?.user) {
-//      return redirect("/"); 
-//  }
+   const session = await getAuthSession();
+   if (!session?.user) {
+     return redirect("/"); 
+ }
 
  return (
  <main className="p-8 mx-auto max-w-4xl">

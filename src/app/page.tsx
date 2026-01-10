@@ -10,7 +10,7 @@ import SignInButton from "@/components/SignInButton";
 
 export default async function Home() {
   
-  return redirect("/dashboard");
+  //return redirect("/dashboard");
   
   const session = await getAuthSession();
   if(session?.user) {
