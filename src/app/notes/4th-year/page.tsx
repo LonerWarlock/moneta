@@ -129,17 +129,17 @@ const fourthYearNotes = [
     ],
   },
   // --- Semester VIII Notes ---
-  /*
+  
   {
-    title: "Elective IV: Cloud Computing",
-    description: "Notes for Cloud Computing (Elective IV).",
+    title: "BCT",
+    description: "Blockchain Technology (Elective IV).",
     semester: "VIII",
     topics: [
-      { name: "CC Unit 1: Cloud Architecture", link: "https://drive.google.com/drive/cc-unit1-link" },
-      { name: "CC Unit 2: Virtualisation", link: "https://drive.google.com/drive/cc-unit2-link" },
+      { name: "Unit 1: Role of Cryptography in Blockchain", link: "https://drive.google.com/file/d/1XvUa0z1nQcqrELUWCz4nTOs4elmfnAZH/view?usp=drive_link" },
+      { name: "PYQs", link: "https://drive.google.com/drive/folders/1qEZUS-aM7C7F_wQJBaQJlVm5icWLgsXT?usp=sharing" },
     ],
   },
-  */
+  
 ];
 
 type Topic = {
