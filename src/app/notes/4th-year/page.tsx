@@ -132,7 +132,7 @@ const fourthYearNotes = [
   
   {
     title: "BCT",
-    description: "Blockchain Technology (Elective IV).",
+    description: "Blockchain Technology (Elective VI).",
     semester: "VIII",
     topics: [
       { name: "Unit 1: Role of Cryptography in Blockchain", link: "https://drive.google.com/file/d/1XvUa0z1nQcqrELUWCz4nTOs4elmfnAZH/view?usp=drive_link" },
@@ -182,11 +182,11 @@ const FourthYearNotesPage = async ({}) => {
 
       <Card className="mt-4">
         <CardContent className="space-y-8">
-          {/* SEMESTER VII SECTION: Using the interactive SubjectAccordion */}
-          <SubjectAccordion notes={semVIINotes} semesterName="VII" />
-
           {/* SEMESTER VIII SECTION: Using the interactive SubjectAccordion */}
           <SubjectAccordion notes={semVIIINotes} semesterName="VIII" />
+
+          {/* SEMESTER VII SECTION: Using the interactive SubjectAccordion */}
+          <SubjectAccordion notes={semVIINotes} semesterName="VII" />
         </CardContent>
       </Card>
     </main>
