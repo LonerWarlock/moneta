@@ -44,7 +44,6 @@ const thirdYearNotes = [
             { name: "Screenshots", link: "https://drive.google.com/drive/folders/1LXdBq7Psy0-Sp7dbnHoHOYXaZIdlagIK" },
         ],
     },
-    // --- SEMESTER VI NOTES ---
     {
         title: "ML",
         description: "Machine Learning",
@@ -86,7 +85,19 @@ const thirdYearNotes = [
             { name: "Unit 6: Computational Complexity", link: "https://drive.google.com/file/d/1PSNQ9M6ey9b57WC9jahfjgW-lbm9-aLc/view?usp=drivesdk" },
             { name: "Screenshots", link: "https://drive.google.com/drive/folders/1C1ckyF10dzzhMxl-azEANxgwssGkb3wv" },
         ],
-    }
+    } /*,
+     {
+        title: "",
+        description: "",
+        semester: "VI",
+        topics: [
+            { name: "Unit 3: ", link: "" },
+            { name: "Unit 4: ", link: "" },
+            { name: "Unit 5: ", link: "" },
+            { name: "Unit 6: ", link: "" },
+            { name: "Screenshots", link: "" },
+        ],
+    }*/
 ];
 // === END: DATA STRUCTURE FOR 3RD YEAR NOTES (EDIT THIS SECTION) ===
 
@@ -133,10 +144,10 @@ const ThirdYearNotesPage = async ({}) => {
       <Card className="mt-4">
         <CardContent className="space-y-8">
           {/* SEMESTER V SECTION: Using the interactive SubjectAccordion */}
-          <SubjectAccordion notes={semVNotes} semesterName="V" />
+          <SubjectAccordion notes={semVINotes} semesterName="VI" />
 
           {/* SEMESTER VI SECTION: Using the interactive SubjectAccordion */}
-          <SubjectAccordion notes={semVINotes} semesterName="VI" />
+          <SubjectAccordion notes={semVNotes} semesterName="V" />
 
         </CardContent>
       </Card>
