@@ -131,6 +131,16 @@ const fourthYearNotes = [
   // --- Semester VIII Notes ---
   
   {
+    title: "DS",
+    description: "Distributed Systems",
+    semester: "VIII",
+    topics: [
+      { name: "Unit 1: Introduction to Distributed Systems", link: "https://drive.google.com/file/d/13PBOPsWq5rgSmi6L_nQ0m80Cl2-re6f1/view?usp=drive_link" },
+      { name: "Unit 2: Middleware", link: ""},
+      { name: "PYQs", link: "https://drive.google.com/drive/folders/1hmJxcYvoBRvak7itoD37URm3xHbkqPB1?usp=drive_link" },
+    ],
+  },
+  {
     title: "BCT",
     description: "Blockchain Technology (Elective VI)",
     semester: "VIII",
