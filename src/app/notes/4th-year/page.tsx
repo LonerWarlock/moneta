@@ -141,6 +141,16 @@ const fourthYearNotes = [
     ],
   },
   {
+    title: "SC",
+    description: "Social Computing (Elective V)",
+    semester: "VIII",
+    topics: [
+      { name: "Unit 1: Introduction to Social Media", link: "https://drive.google.com/file/d/17Hdl9uai4vJVzwvJAT8Ga6-W1aRMaVcr/view?usp=drive_link" },
+      { name: "Unit 2: Network Measures", link: "" },
+      { name: "PYQs", link: "https://drive.google.com/drive/folders/1AsBMrg6hSn0BoESKsg9HuJp73C-s5pBI?usp=drive_link" },
+    ],
+  },
+  {
     title: "BCT",
     description: "Blockchain Technology (Elective VI)",
     semester: "VIII",
