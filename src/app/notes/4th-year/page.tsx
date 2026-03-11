@@ -146,7 +146,7 @@ const fourthYearNotes = [
     semester: "VIII",
     topics: [
       { name: "Unit 1: Introduction to Social Media", link: "https://drive.google.com/file/d/17Hdl9uai4vJVzwvJAT8Ga6-W1aRMaVcr/view?usp=drive_link" },
-      { name: "Unit 2: Network Measures", link: "" },
+      { name: "Unit 2: Network Measures", link: "https://drive.google.com/file/d/1nxPKe5cf-bFmC-809AupWD6ao_cmS9bR/view?usp=sharing" },
       { name: "PYQs", link: "https://drive.google.com/drive/folders/1AsBMrg6hSn0BoESKsg9HuJp73C-s5pBI?usp=drive_link" },
     ],
   },
