@@ -1,4 +1,10 @@
-import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { redirect } from "next/navigation";
 import { getAuthSession } from "@/lib/nextauth";
 import SignInButton from "@/components/SignInButton";
@@ -7,22 +13,22 @@ import SignInButton from "@/components/SignInButton";
 // import { buttonVariants } from "@/components/ui/button";
 // import { Wrench } from "lucide-react";
 
-
 export default async function Home() {
-  
-  //return redirect("/dashboard");
-  
+    
+  return redirect("/dashboard");
+
   const session = await getAuthSession();
-  if(session?.user) {
+  if (session?.user) {
     return redirect("/dashboard");
   }
-     return (<div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
-    <Card className="w-[300px]">
-      <CardHeader className="text-center">
-        <CardTitle>Moneta</CardTitle>
-        <CardDescription>
+  return (
+    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+      <Card className="w-[300px]">
+        <CardHeader className="text-center">
+          <CardTitle>Moneta</CardTitle>
+          <CardDescription>
             Notes and More...
-{/*      
+            {/*      
    return (
     <div className="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
        <Card className="w-[350px] text-center p-4">
@@ -35,8 +41,8 @@ export default async function Home() {
           </CardDescription>
         </CardHeader>
         <CardContent className="text-center">
-            <SignInButton text="Sign In With Google" image="/google.png"/>
-{/* 
+          <SignInButton text="Sign In With Google" image="/google.png" />
+          {/* 
         <CardContent className="space-y-4 px-4">
           <p className="text-sm text-muted-foreground">
             In the meantime, you can access all the notes here:

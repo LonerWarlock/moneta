@@ -1,7 +1,7 @@
 // src/app/about/page.tsx
 import React from "react";
-import { getAuthSession } from "@/lib/nextauth";
-import { redirect } from "next/navigation";
+// import { getAuthSession } from "@/lib/nextauth";
+// import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import DeveloperCard from "@/components/About/DeveloperCard";
 import { BookOpen, Code, Lightbulb, Heart } from "lucide-react";
@@ -59,10 +59,10 @@ const noteContributors: Contributor[] = [
 ];
 
 const AboutPage = async () => { 
-    const session = await getAuthSession();
-     if (!session?.user) {
-         return redirect("/");
-     }
+    // const session = await getAuthSession();
+    //  if (!session?.user) {
+    //      return redirect("/");
+    //  }
     
     return (
         <main className="p-8 mx-auto max-w-6xl">
