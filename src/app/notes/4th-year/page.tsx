@@ -160,7 +160,14 @@ const fourthYearNotes = [
       { name: "PYQs", link: "https://drive.google.com/drive/folders/1qEZUS-aM7C7F_wQJBaQJlVm5icWLgsXT?usp=sharing" },
     ],
   },
-  
+  {
+    title: "LP-V",
+    description: "Laboratory Practice V",
+    semester: "VIII",
+    topics: [
+      {name: "A1: Multi-threaded Process Communication using RMI", link: "https://drive.google.com/drive/folders/1Ip1tnA0rUPctdLm3hvH0ftvbudxWSz4P?usp=sharing"},
+    ] 
+  },
 ];
 
 type Topic = {
