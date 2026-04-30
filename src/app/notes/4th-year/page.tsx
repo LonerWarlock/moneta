@@ -1,7 +1,7 @@
 // src/app/notes/4th-year/page.tsx
 import React from "react";
-// import { getAuthSession } from "@/lib/nextauth";
-// import { redirect } from "next/navigation";
+import { getAuthSession } from "@/lib/nextauth";
+import { redirect } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 // Import the new Client Component
 import { SubjectAccordion } from "@/components/Notes/SubjectAccordion";
@@ -167,8 +167,8 @@ const fourthYearNotes = [
     topics: [
       {name: "A1: Multi-threaded Process Communication using RMI", link: "https://drive.google.com/drive/folders/1Ip1tnA0rUPctdLm3hvH0ftvbudxWSz4P?usp=sharing"},
       {name: "A2: Distributed App for Object Brokering using CORBA", link: "https://drive.google.com/drive/folders/1axGmiEbf9MhAhEFmERDm_E4gfaKUUg9I?usp=drive_link"},
-      {name: "A3: Distribute System using MPI", link: "https://drive.google.com/drive/folders/12tzMYsC8-tVX_IHbpWgXVcRE9MCfO8g8?usp=drive_link"},
-      {name: "A: Clock Synchronization using Berkeley Algorithm", link: "https://drive.google.com/drive/folders/10VGMPn25YMdEsdCXKBoDaAv09f-5umbT?usp=sharing"},
+      {name: "A3: Distributed System using MPI", link: "https://drive.google.com/drive/folders/12tzMYsC8-tVX_IHbpWgXVcRE9MCfO8g8?usp=drive_link"},
+      {name: "A4: Clock Synchronization using Berkeley Algorithm", link: "https://drive.google.com/drive/folders/10VGMPn25YMdEsdCXKBoDaAv09f-5umbT?usp=sharing"},
     ] 
   },
 ];
@@ -187,10 +187,10 @@ type Subject = {
 
 
 const FourthYearNotesPage = async ({}) => {
-//    const session = await getAuthSession();
-//    if (!session?.user) {
-//      return redirect("/");
-//    }
+   const session = await getAuthSession();
+   if (!session?.user) {
+     return redirect("/");
+   }
 
   // Filter notes for each semester
   const semVIINotes = fourthYearNotes.filter(note => note.semester === "VII") as Subject[];
