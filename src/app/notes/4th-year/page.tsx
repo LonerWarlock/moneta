@@ -166,6 +166,7 @@ const fourthYearNotes = [
     semester: "VIII",
     topics: [
       {name: "A1: Multi-threaded Process Communication using RMI", link: "https://drive.google.com/drive/folders/1Ip1tnA0rUPctdLm3hvH0ftvbudxWSz4P?usp=sharing"},
+      {name: "A2: Distributed App for Object Brokering using CORBA", link: "https://drive.google.com/drive/folders/1axGmiEbf9MhAhEFmERDm_E4gfaKUUg9I?usp=drive_link"}
     ] 
   },
 ];
