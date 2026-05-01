@@ -169,6 +169,7 @@ const fourthYearNotes = [
       {name: "A2: Distributed App for Object Brokering using CORBA", link: "https://drive.google.com/drive/folders/1axGmiEbf9MhAhEFmERDm_E4gfaKUUg9I?usp=drive_link"},
       {name: "A3: Distributed System using MPI", link: "https://drive.google.com/drive/folders/12tzMYsC8-tVX_IHbpWgXVcRE9MCfO8g8?usp=drive_link"},
       {name: "A4: Clock Synchronization using Berkeley Algorithm", link: "https://drive.google.com/drive/folders/10VGMPn25YMdEsdCXKBoDaAv09f-5umbT?usp=sharing"},
+      {name: "A5: Token Ring Based Mutual Exclusion Algorithm", link: "https://drive.google.com/drive/folders/17s0lqF2BbXJo9RcApXB75ml6EPJ5eOaM?usp=sharing"},
     ] 
   },
 ];
