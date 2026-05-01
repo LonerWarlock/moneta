@@ -142,6 +142,19 @@ const thirdYearNotes = [
     topics: [
       { name: "CNSL Oral Notes", link: "https://drive.google.com/drive/folders/1Zs7nZd5DFyFWN69QzTul22u_3JURwtZ5?usp=sharing" },
     ],
+  },
+  {
+    title: "DSBDAL",
+    description: "Data Science and Big Data Analytics Laboratory",
+    semester: "VI",
+    topics: [
+      { name: "CSV Datasets", link: "https://drive.google.com/drive/folders/1qHS9EPBOkeSpTzOuyO44CLkPU9_wMn8G?usp=drive_link" },
+      { name: "Hadoop HBase-Hive", link: "https://drive.google.com/drive/folders/1jpyZg4-3elWVO_2uQgms1gg0NWfamt8K?usp=drive_link" },
+      { name: "Hadoop Mapreduce", link: "https://drive.google.com/drive/folders/1hGobO3TKNFHNPH6bqcu7k8wpur4FVc2t?usp=drive_link" },
+      { name: "Python Assignments", link: "https://drive.google.com/drive/folders/1hGobO3TKNFHNPH6bqcu7k8wpur4FVc2t?usp=drive_link" },
+      { name: "Review Scrapper", link: "https://drive.google.com/drive/folders/1Kd3ghoBqy0b6hEj8tVnJmup1GIuGp57z?usp=drive_link" },
+      { name: "Tableau Assignments", link: "https://drive.google.com/drive/folders/1EHjWRCDQR0VN2EcBuGWB1Yky6hUv2zL_?usp=drive_link" },
+    ],
   }
 ];
 // === END: DATA STRUCTURE FOR 3RD YEAR NOTES (EDIT THIS SECTION) ===
