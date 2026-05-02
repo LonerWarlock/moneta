@@ -171,6 +171,7 @@ const fourthYearNotes = [
       {name: "A4: Clock Synchronization using Berkeley Algorithm", link: "https://drive.google.com/drive/folders/10VGMPn25YMdEsdCXKBoDaAv09f-5umbT?usp=sharing"},
       {name: "A5: Token Ring Based Mutual Exclusion Algorithm", link: "https://drive.google.com/drive/folders/17s0lqF2BbXJo9RcApXB75ml6EPJ5eOaM?usp=sharing"},
       {name: "A6: Bully & Ring Algorithm for Leader Election", link: "https://drive.google.com/drive/folders/1YWbDB8zJVYKpxFwZo5LRe-IpW2RN1JxP?usp=drive_link"},
+      {name: "A7: Web Sevice & Distributed Web Service Consumer", link: "https://drive.google.com/drive/folders/1sLRDsvjOZdvgqyKKvKAu9BOpSLHk5UlI?usp=sharing"}
     ] 
   },
 ];
