@@ -1,13 +1,13 @@
-// src/app/admin/page.tsx
 import React from "react";
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
-// IMPORTANT: Assumes these components were created in src/components/Admin/
 import InfoCard from "@/components/Admin/InfoCard";
 import UserTable from "@/components/Admin/UserTable";
-import { Users, BrainCircuit } from "lucide-react";
-
+import FeedbackStats from "@/components/Admin/FeedbackStats";
+import FeedbackTable from "@/components/Admin/FeedbackTable";
+import { Tabs, TabsContent, TabsTrigger, TabsList } from "@/components/ui/tabs";
+import { Users, MessageSquareText } from "lucide-react";
 
 export const metadata = {
   title: "Admin Console | Moneta",
@@ -16,54 +16,62 @@ export const metadata = {
 
 const AdminPage = async () => {
   const session = await getAuthSession();
-  
-  // === 1. SECURITY CHECK (Access Control by Hardcoded Email from .env) ===
-  // NOTE: You must set ADMIN_EMAIL="your_admin_email@example.com" in your .env file
+
   const ADMIN_EMAIL_1 = process.env.ADMIN_EMAIL_1;
   const ADMIN_EMAIL_2 = process.env.ADMIN_EMAIL_2;
-  
+
   if (!session?.user || (session.user.email !== ADMIN_EMAIL_1 && session.user.email !== ADMIN_EMAIL_2)) {
-    // Redirect unauthorized users (keeping the page secret)
     return redirect("/");
   }
 
-  // === 2. DATA FETCHING (Features) ===
-  const [userCount, totalQuizzes, users] = await Promise.all([
-    prisma.user.count(), 
+  const [userCount, totalQuizzes, users, feedbacks] = await Promise.all([
+    prisma.user.count(),
     prisma.game.count(),
-    prisma.user.findMany({ 
-        select: { 
-            id: true, 
-            name: true, 
-            email: true, 
-            image: true
-        }
+    prisma.user.findMany({
+      include: {
+        _count: {
+          select: { games: true },
+        },
+        feedbacks: {
+          take: 1,
+          orderBy: { createdAt: "desc" },
+        },
+      },
     }),
-    prisma.topicCount.count(),
+    prisma.feedback.findMany({
+      include: { user: true },
+      orderBy: { createdAt: "desc" },
+    }),
   ]);
 
   return (
-    <main className="p-8 mx-auto max-w-7xl">
-      {/* Header Section */}
+    <main className="p-4 md:p-8 mx-auto max-w-7xl">
       <div className="flex items-center justify-between pb-4 border-b-2 border-dashed">
-        <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-          Admin Console
-        </h1>
+        <h1 className="text-2xl font-bold tracking-tight md:text-4xl">Admin Console</h1>
       </div>
 
-      {/* Info Cards Row: Total Users, Quizzes, Unique Topics */}
-      <div className="grid gap-4 mt-8 md:grid-cols-2">
-        
+      <div className="grid gap-4 mt-8 grid-cols-1 sm:grid-cols-2">
         <InfoCard title="Total Users" value={userCount} icon={<Users className="h-4 w-4 text-muted-foreground" />} />
-        
-        <InfoCard title="Total Quizzes Created" value={totalQuizzes} icon={<BrainCircuit className="h-4 w-4 text-muted-foreground" />} />
-        
-     </div>
-
-      {/* User List Table */}
-      <div className="mt-8">
-        <UserTable users={users} />
+        <InfoCard title="Feedback Received" value={feedbacks.length} icon={<MessageSquareText className="h-4 w-4 text-muted-foreground" />} />
       </div>
+
+      <Tabs defaultValue="users" className="mt-8">
+        <TabsList className="flex w-full">
+          <TabsTrigger value="users" className="flex-1">User Directory</TabsTrigger>
+          <TabsTrigger value="feedback" className="flex-1">Feedback Monitoring</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="users">
+          <div className="mt-4">
+            <UserTable users={users} />
+          </div>
+        </TabsContent>
+
+        <TabsContent value="feedback">
+          <FeedbackStats feedbacks={feedbacks} />
+          <FeedbackTable feedbacks={feedbacks} />
+        </TabsContent>
+      </Tabs>
     </main>
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,28 +13,41 @@ import { toast } from "sonner";
 import { SendHorizonal, ChevronLeft, Loader2 } from "lucide-react";
 
 const FeedbackPage = () => {
+    const { data: session, status } = useSession();
     const router = useRouter();
+    
     const [loading, setLoading] = useState(false);
     const [collegeType, setCollegeType] = useState("PICT");
     const [otherCollege, setOtherCollege] = useState("");
     const [gradYear, setGradYear] = useState("");
 
+    // 1. Corrected Navigation Logic: Move side effects into useEffect[cite: 1]
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push("/");
+        }
+    }, [status, router]);
+
+    const handleSkip = () => {
+        // Set session flag to prevent immediate redirection back from the Dashboard[cite: 1]
+        sessionStorage.setItem("skipFeedback", "true");
+        router.push("/dashboard");
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        
+
         const formData = new FormData(e.currentTarget);
 
-        // Construct data object manually to ensure types match Prisma schema
         const data = {
             college: collegeType === "PICT" ? "PICT" : otherCollege,
-            graduationYear: parseInt(gradYear), // Must be Int
-            supportRating: parseInt(formData.get("supportRating") as string), // Must be Int
-            scoresIncreased: formData.get("scoresIncreased") === "yes", // Must be Boolean
-            semesterCatchUp: formData.get("semesterCatchUp") === "yes", // Must be Boolean
+            graduationYear: parseInt(gradYear),
+            supportRating: parseInt(formData.get("supportRating") as string),
+            scoresIncreased: formData.get("scoresIncreased") === "yes",
+            semesterCatchUp: formData.get("semesterCatchUp") === "yes",
         };
 
-        // Basic Validation
         if (!data.college || isNaN(data.graduationYear) || isNaN(data.supportRating)) {
             toast.error("Please fill in all fields");
             setLoading(false);
@@ -51,27 +65,30 @@ const FeedbackPage = () => {
 
             if (response.ok) {
                 toast.success("Thank you for your feedback!");
-                // Clear session storage skip flag if it exists
                 sessionStorage.setItem("skipFeedback", "true");
                 router.push("/dashboard");
                 router.refresh();
             } else {
-                const errorData = await response.text();
-                console.error("Submission error:", errorData);
                 toast.error("Failed to save feedback. Please try again.");
             }
         } catch (error) {
-            console.error("Network error:", error);
             toast.error("A network error occurred.");
         } finally {
             setLoading(false);
         }
     };
 
-    const handleSkip = () => {
-        sessionStorage.setItem("skipFeedback", "true");
-        router.push("/dashboard");
-    };
+    // 2. Prevent UI flickering while checking authentication[cite: 1]
+    if (status === "loading") {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <Loader2 className="w-10 h-10 animate-spin" />
+            </div>
+        );
+    }
+
+    // If unauthenticated, return null while the useEffect redirect happens[cite: 1]
+    if (status === "unauthenticated") return null;
 
     return (
         <main className="p-8 mx-auto max-w-7xl">
@@ -102,7 +119,6 @@ const FeedbackPage = () => {
                     <CardContent className="p-6 md:p-8">
                         <form onSubmit={handleSubmit} className="space-y-10">
 
-                            {/* College Selection */}
                             <div className="space-y-4">
                                 <Label className="text-lg font-semibold">
                                     Which college are you from?
@@ -127,7 +143,6 @@ const FeedbackPage = () => {
                                 )}
                             </div>
 
-                            {/* Graduation Year */}
                             <div className="space-y-4">
                                 <Label className="text-lg font-semibold">
                                     Which year do you pass out?
@@ -144,7 +159,6 @@ const FeedbackPage = () => {
                                 </Select>
                             </div>
 
-                            {/* Support Rating */}
                             <div className="space-y-4">
                                 <Label className="text-lg font-semibold block">
                                     On a scale of 1-10, how much do you support this initiative?
@@ -159,7 +173,6 @@ const FeedbackPage = () => {
                                 </RadioGroup>
                             </div>
 
-                            {/* Academic Scores */}
                             <div className="space-y-4">
                                 <Label className="text-lg font-semibold block">
                                     Did your academic scores increase after starting to use the app?
@@ -176,7 +189,6 @@ const FeedbackPage = () => {
                                 </RadioGroup>
                             </div>
 
-                            {/* Semester Catch-up */}
                             <div className="space-y-4">
                                 <Label className="text-lg font-semibold block leading-tight">
                                     Did the notes help you catch up to the entire semester&apos;s worth of content in a few days?
