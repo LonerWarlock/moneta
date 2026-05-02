@@ -184,6 +184,15 @@ const fourthYearNotes = [
       { name: "BCT Lab Notes", link: "" }
     ]
   },
+  {
+    title: "LP-VI (BAI)",
+    description: "Laboratory Practice VI (BAI)",
+    semester: "VIII",
+    topics: [
+      { name: "BAI Question Banks", link: "https://drive.google.com/drive/folders/1RyhYp86OFMo5FrfuZdB3KypoK-Fj-yDz?usp=sharing" },
+      { name: "BAI QB Answers", link: "" },
+    ]
+  },
 ];
 
 type Topic = {

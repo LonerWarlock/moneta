@@ -2,6 +2,8 @@
 import { getAuthSession } from "@/lib/nextauth";
 import { redirect } from "next/navigation";
 import React from "react";
+import { BookOpenText } from "lucide-react";
+import { TrendingUp  } from "lucide-react";
 //import QuizMeCard from "@/components/QuizMeCard";
 //import HistoryCard from "@/components/dashboard/HistoryCard";
 //import HotTopicsCard from "@/components/dashboard/HotTopicsCard";
@@ -26,8 +28,24 @@ const Dashboard = async () => {
       </div>
 
       {/* NEW: Notes Card in its own full-width row to be prominent */}
-      <div className="grid gap-8 mt-8 md:grid-cols-1"> 
-        <NotesCard />
+      <div className="grid gap-8 mt-8 md:grid-cols-1">
+        <NotesCard
+          title="SPPU IT-2019 Notes"
+          description="Click to access all the study material related to SPPU IT-2019 Pattern."
+          bgClass="bg-emerald-500 text-white dark:bg-emerald-600"
+          route="/notes"
+          icon={<BookOpenText size={24} strokeWidth={2.5} />}
+        />
+      </div>
+
+      <div className="grid gap-8 mt-8 md:grid-cols-1">
+        <NotesCard
+          title="Interview Preparation Guide"
+          description="Your all-in-one hub for placements, from aptitude to final HR round."
+          bgClass="bg-amber-500 text-white dark:bg-amber-600"
+          route="/interview"
+          icon={<TrendingUp  size={24} strokeWidth={2.5} />}
+        />
       </div>
 
       <div className="grid gap-8 mt-8 md:grid-cols-2">
