@@ -96,7 +96,7 @@ const thirdYearNotes = [
       { name: "Unit 5: Cryptographic Algorithm", link: "https://drive.google.com/file/d/1pLs7e30VilT-rWpZBZxISVbRAhj2z2YZ/view?usp=sharing" },
       { name: "Unit 6: Introduction to Cybersecurity", link: "https://drive.google.com/file/d/1Roq0vWBumi_cqlKmuLCPXUq-udz6HLon/view?usp=sharing" },
       { name: "Screenshots", link: "https://drive.google.com/drive/folders/1t7fF5wcgiHbWkZv74iD1nFnzysliXRBV?usp=sharing" },
-      { name: "CNS Endsem Decode", link: "https://drive.google.com/file/d/1hWR-x_B0kEGCO7uIdPr1aSqRV2j2_uL5/view?usp=sharing"},
+      { name: "CNS Endsem Decode", link: "https://drive.google.com/file/d/1hWR-x_B0kEGCO7uIdPr1aSqRV2j2_uL5/view?usp=sharing" },
     ],
   },
   {
@@ -108,7 +108,7 @@ const thirdYearNotes = [
       { name: "Unit 4: Big Data Analytics", link: "https://drive.google.com/file/d/1uDlWfyW21NMTp7eP7k-DNoblDT_j9lmm/view?usp=sharing" },
       { name: "Unit 5: Big Data Vizualization", link: "https://drive.google.com/file/d/1HsaCt3qo97Cka6c8RrUlJ8yP_OzYSwas/view?usp=sharing" },
       { name: "Unit 6: Big Data Technologies Application & Impact ", link: "https://drive.google.com/file/d/1dRZ2ngcyuUwSSqwDTlWlpFvw1YJjoDRW/view?usp=sharing" },
-      { name: "DSBDA Endsem Decode", link: "https://drive.google.com/file/d/1KEdKd_eXeDPVPy567Xsv-RXa247k-x5u/view?usp=drive_link"}
+      { name: "DSBDA Endsem Decode", link: "https://drive.google.com/file/d/1KEdKd_eXeDPVPy567Xsv-RXa247k-x5u/view?usp=drive_link" }
     ],
   },
   {
@@ -121,7 +121,7 @@ const thirdYearNotes = [
       { name: "Unit 5: Mobile Web Development", link: "https://drive.google.com/file/d/1oEKp0fvcvJUIqqcch7zUuaAM9yxbQ4nW/view?usp=sharing" },
       { name: "Unit 6: Web Application Deployment", link: "https://drive.google.com/file/d/1KQQSgkxSCUubMN5W-7jam8jFC-XxmIBR/view?usp=sharing" },
       { name: "REST_HTTP_METHO_API", link: "https://drive.google.com/file/d/1rJZWaqKleWmpdPV7c7O3f0vLpYtJ16Ci/view?usp=sharing" },
-      { name: "WAD Endsem Decode", link: "https://drive.google.com/file/d/1A1ttGHEg3P6K1bN1fIx2y4iF15CgrhVW/view?usp=sharing"}
+      { name: "WAD Endsem Decode", link: "https://drive.google.com/file/d/1A1ttGHEg3P6K1bN1fIx2y4iF15CgrhVW/view?usp=sharing" }
     ],
   },
   {
@@ -173,10 +173,10 @@ type Subject = {
 
 
 const ThirdYearNotesPage = async ({ }) => {
-     const session = await getAuthSession();
-     if (!session?.user) {
-       return redirect("/");
-     }
+  const session = await getAuthSession();
+  if (!session?.user) {
+    return redirect("/");
+  }
 
   // Filter notes for SEMESTER V and VI
   const semVNotes = thirdYearNotes.filter(note => note.semester === "V") as Subject[];
