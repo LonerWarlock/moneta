@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { User } from "@prisma/client";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import UserAvatar from "../UserAvatar"; 
+import UserAvatar from "../UserAvatar";
 
 // Defining the shape of the data we fetch from Prisma
 type UserData = Pick<User, "id" | "name" | "email" | "image">;
@@ -40,11 +40,10 @@ const UserTable = ({ users }: Props) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {users.map((user) => (
+            {[...users].reverse().map((user) => (
               <TableRow key={user.id}>
                 <TableCell className="font-medium">
-                    {/* FIX: Explicitly pass only name and image to UserAvatar to satisfy its prop type */}
-                    <UserAvatar user={{ name: user.name, image: user.image }} />
+                  <UserAvatar user={{ name: user.name, image: user.image }} />
                 </TableCell>
                 <TableCell className="font-medium">{user.name || "N/A"}</TableCell>
                 <TableCell>{user.email}</TableCell>
