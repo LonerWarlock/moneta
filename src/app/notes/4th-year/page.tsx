@@ -181,7 +181,7 @@ const fourthYearNotes = [
     topics: [
       { name: "BCT Question Bank", link: "https://drive.google.com/file/d/1Vwh4xjfifYCZCsj1XgpjtA9eX_Z9pW6X/view?usp=drive_link" },
       { name: "BCT QB Answers", link: "https://drive.google.com/drive/folders/1BeXgKdjeamxGBgsP80ImjP9JQ0A_685k?usp=sharing" },
-      { name: "BCT Lab Notes", link: "" }
+      { name: "BCT Lab Notes", link: "https://drive.google.com/file/d/1AGcXGQuC1i9ZwVUc0olGs9lgr8Afs9A7/view?usp=sharing" }
     ]
   },
   {

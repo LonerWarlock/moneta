@@ -142,7 +142,7 @@ const FeedbackTable = ({ feedbacks }: Props) => {
                         <div className="space-y-3 text-sm">
                           <div className="flex justify-between">
                             <span>College:</span>
-                            <span>{fb.college}</span>
+                            <span>{fb.college} {fb.graduationYear}</span>
                           </div>
 
                           <div className="flex justify-between">
