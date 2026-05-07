@@ -1,6 +1,6 @@
 // src/app/dashboard/page.tsx
-import { getAuthSession } from "@/lib/nextauth";
-import { redirect } from "next/navigation";
+// import { getAuthSession } from "@/lib/nextauth";
+// import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import FeedbackSkipCheck from "@/components/FeedbackSkipCheck";
 import React from "react";
@@ -12,22 +12,24 @@ export const metadata = {
 };
 
 const Dashboard = async () => {
-  const session = await getAuthSession();
+  // const session = await getAuthSession();
   
-  if (!session?.user) {
-    return redirect("/");
-  }
+  // if (!session?.user) {
+  //   return redirect("/");
+  // }
 
   // Fetch feedback status from database[cite: 1]
-  const user = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { hasGivenFeedback: true },
-  });
+  // const user = await prisma.user.findUnique({
+  //   where: { id: session.user.id },
+  //   select: { hasGivenFeedback: true },
+  // });
 
   return (
     <main className="p-8 mx-auto max-w-7xl">
-      {/* Logic to detect fresh session and redirect if needed[cite: 1] */}
-      <FeedbackSkipCheck hasGivenFeedback={!!user?.hasGivenFeedback} />
+
+      <FeedbackSkipCheck hasGivenFeedback={true} />
+
+      {/* ACTUAL LINE: <FeedbackSkipCheck hasGivenFeedback={!!user?.hasGivenFeedback} /> */}
 
       <div className="flex items-center justify-between pb-4 border-b-2 border-dashed">
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
