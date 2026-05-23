@@ -151,6 +151,14 @@ const fourthYearNotes = [
     ],
   },
   {
+    title: "NLP",
+    description: "Natural Language Processing",
+    semester: "VIII",
+    topics: [
+      { name: "PYQs", link: "https://drive.google.com/drive/folders/1y61hc-7eqw2hikGJQzdVYSu1O6FteHZ9?usp=sharing" },
+    ],
+  },
+  {
     title: "BCT",
     description: "Blockchain Technology (Elective VI)",
     semester: "VIII",
@@ -158,6 +166,14 @@ const fourthYearNotes = [
       { name: "Unit 1: Role of Cryptography in Blockchain", link: "https://drive.google.com/file/d/1XvUa0z1nQcqrELUWCz4nTOs4elmfnAZH/view?usp=drive_link" },
       { name: "Unit 2: Introduction to Blockchain Technology", link: "https://drive.google.com/file/d/1LliS_x_Kr0Q_tjfNEY56hbWNgACl09IP/view?usp=sharing" },
       { name: "PYQs", link: "https://drive.google.com/drive/folders/1qEZUS-aM7C7F_wQJBaQJlVm5icWLgsXT?usp=sharing" },
+    ],
+  },
+  {
+    title: "BAI",
+    description: "Business Analytics & Intelligence",
+    semester: "VIII",
+    topics: [
+      { name: "PYQs", link: "https://drive.google.com/drive/folders/1QZFIDlKe3kq_R6ZSaMdW-7yhINxfZjER?usp=drive_link" },
     ],
   },
   {
@@ -190,7 +206,6 @@ const fourthYearNotes = [
     semester: "VIII",
     topics: [
       { name: "BAI Question Banks", link: "https://drive.google.com/drive/folders/1RyhYp86OFMo5FrfuZdB3KypoK-Fj-yDz?usp=sharing" },
-      { name: "BAI QB Answers", link: "" },
     ]
   },
 ];
