@@ -137,6 +137,7 @@ const fourthYearNotes = [
     topics: [
       { name: "Unit 1: Introduction to Distributed Systems", link: "https://drive.google.com/file/d/13PBOPsWq5rgSmi6L_nQ0m80Cl2-re6f1/view?usp=drive_link" },
       { name: "Unit 2: Middleware", link: "https://drive.google.com/file/d/1oPkdUscT_yo7zUYHM5MeZPpyr8QkmyGm/view?usp=sharing" },
+      { name: "Unit 3: Inter-Process Communication", link: "https://drive.google.com/file/d/1_Or68z1yVskOuFnbUM6rRdrPNKau1Tan/view?usp=drive_link"}, 
       { name: "PYQs", link: "https://drive.google.com/drive/folders/1hmJxcYvoBRvak7itoD37URm3xHbkqPB1?usp=drive_link" },
     ],
   },
