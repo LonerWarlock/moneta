@@ -140,6 +140,7 @@ const fourthYearNotes = [
       { name: "Unit 3: Inter-Process Communication", link: "https://drive.google.com/file/d/1_Or68z1yVskOuFnbUM6rRdrPNKau1Tan/view?usp=drive_link"}, 
       { name: "Unit 4: Replication and Fault Tolerance", link: "https://drive.google.com/file/d/1xBk4XRQ7nPiwA_PtBm96wa6KUxKX8qVy/view?usp=drive_link" },
       { name: "Unit 5: Distributed Files, Multimedia and Web Based System", link: "https://drive.google.com/file/d/17qY0LnU-bSvWY9ZiijFitv_vFxiyPVNj/view?usp=sharing"},
+       { name: "Unit 6: Recent Trends in Distributed Systems", link: "https://drive.google.com/file/d/12CW_xDQynRzJrOTzwcACc2wfhQtTrDsq/view?usp=drive_link"},
       { name: "PYQs", link: "https://drive.google.com/drive/folders/1hmJxcYvoBRvak7itoD37URm3xHbkqPB1?usp=drive_link" },
     ],
   },
