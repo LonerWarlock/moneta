@@ -1,6 +1,6 @@
 // src/app/dashboard/page.tsx
-// import { getAuthSession } from "@/lib/nextauth";
-// import { redirect } from "next/navigation";
+import { getAuthSession } from "@/lib/nextauth";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import FeedbackSkipCheck from "@/components/FeedbackSkipCheck";
 import React from "react";
@@ -12,11 +12,11 @@ export const metadata = {
 };
 
 const Dashboard = async () => {
-  // const session = await getAuthSession();
+  const session = await getAuthSession();
   
-  // if (!session?.user) {
-  //   return redirect("/");
-  // }
+  if (!session?.user) {
+    return redirect("/");
+  }
 
   // Fetch feedback status from database[cite: 1]
   // const user = await prisma.user.findUnique({
