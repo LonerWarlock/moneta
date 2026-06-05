@@ -172,6 +172,7 @@ const fourthYearNotes = [
       { name: "Unit 3: Blockchain Platforms: Ethereum", link: "https://drive.google.com/file/d/1TN8bVhuMHrslEaSps7u81IgvNLEw1AfS/view?usp=drive_link"},
       { name: "Unit 4: Blockchain Platforms: Hyperledger", link: "https://drive.google.com/file/d/1pwgjrHVt-0CX4ZhOkGuky8thRkQktjC8/view?usp=drive_link"},
       { name: "Unit 5: Introduction to Tokenization", link: "https://drive.google.com/file/d/1M1AkiITPDeyPEyB1dhtgUqLcOylR4mJ_/view?usp=sharing"},
+      { name: "Unit 6: Merits and Demerits of Blockchain and Applications", link: "https://drive.google.com/file/d/1tiyY319vkQ7mdiBvC6WWEUyGiLkLo2S7/view?usp=drive_link"},
       { name: "PYQs", link: "https://drive.google.com/drive/folders/1qEZUS-aM7C7F_wQJBaQJlVm5icWLgsXT?usp=sharing" },
     ],
   },
