@@ -152,7 +152,7 @@ const fourthYearNotes = [
       { name: "Unit 1: Introduction to Social Media", link: "https://drive.google.com/file/d/17Hdl9uai4vJVzwvJAT8Ga6-W1aRMaVcr/view?usp=drive_link" },
       { name: "Unit 2: Network Measures", link: "https://drive.google.com/file/d/1nxPKe5cf-bFmC-809AupWD6ao_cmS9bR/view?usp=sharing" },
       { name: "Unit 3: Mining in Social Media", link: "https://drive.google.com/file/d/1DCg1lYbFlAWOmI17D-Ct6W-6Q6qvO4rM/view?usp=sharing"},
-      { name: "Unit 4: nfluence and Homophily", link: "https://drive.google.com/file/d/1enjOUBnpo4vWQhMStQz3lv6bzloveJCk/view?usp=sharing"},
+      { name: "Unit 4: Influence and Homophily", link: "https://drive.google.com/file/d/1enjOUBnpo4vWQhMStQz3lv6bzloveJCk/view?usp=sharing"},
       { name: "PYQs", link: "https://drive.google.com/drive/folders/1AsBMrg6hSn0BoESKsg9HuJp73C-s5pBI?usp=drive_link" },
     ],
   },
