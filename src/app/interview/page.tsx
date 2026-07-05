@@ -110,10 +110,10 @@ export const metadata = {
 
 
 const SecondYearNotesPage = async () => {
-//    const session = await getAuthSession();
-//    if (!session?.user) {
-//      return redirect("/"); 
-//    }
+   const session = await getAuthSession();
+   if (!session?.user) {
+     return redirect("/"); 
+}
 
  return (
  <main className="p-8 mx-auto max-w-4xl">

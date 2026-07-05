@@ -12,11 +12,11 @@ export const metadata = {
 };
 
 const Dashboard = async () => {
-  // const session = await getAuthSession();
+  const session = await getAuthSession();
   
-  // if (!session?.user) {
-  //   return redirect("/");
-  // }
+  if (!session?.user) {
+    return redirect("/");
+  }
 
   // Fetch feedback status from database[cite: 1]
   // const user = await prisma.user.findUnique({
