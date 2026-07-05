@@ -236,10 +236,10 @@ type Subject = {
 
 
 const FourthYearNotesPage = async ({ }) => {
-  const session = await getAuthSession();
-  if (!session?.user) {
-    return redirect("/");
-  }
+  // const session = await getAuthSession();
+  // if (!session?.user) {
+  //   return redirect("/");
+  // }
 
   // Filter notes for each semester
   const semVIINotes = fourthYearNotes.filter(note => note.semester === "VII") as Subject[];
