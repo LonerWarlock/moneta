@@ -51,7 +51,6 @@ const noteContributors: Contributor[] = [
     linkedinLink: "https://www.linkedin.com/in/soham-phatak",
     instagramLink: "https://www.instagram.com/sohamphatak21/",
   },
-  /*
   {
     name: "Prafulla Bhand",
     role: "Interview Preparation Guide",
@@ -61,6 +60,7 @@ const noteContributors: Contributor[] = [
     linkedinLink: "https://www.linkedin.com/in/prafulla-bhand-508257290",
     instagramLink: "https://www.instagram.com/_prafulla29_xs/",
   },
+  /*
   {
     name: "Samyak Bora",
     role: "LP-VI (BAI) Notes | SPPU IT-2019 Sem-8",
